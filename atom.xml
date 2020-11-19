@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://haifengchengguang.github.io</id>
-    <title>haifengchengguang&apos;s blog</title>
-    <updated>2020-11-19T13:07:26.769Z</updated>
+    <title>oceanwave</title>
+    <updated>2020-11-19T13:15:28.826Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://haifengchengguang.github.io"/>
     <link rel="self" href="https://haifengchengguang.github.io/atom.xml"/>
     <subtitle>原谅我这一生不羁放纵爱自由</subtitle>
     <logo>https://haifengchengguang.github.io/images/avatar.png</logo>
     <icon>https://haifengchengguang.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, haifengchengguang&apos;s blog</rights>
+    <rights>All rights reserved 2020, oceanwave</rights>
     <entry>
         <title type="html"><![CDATA[终于有一个博客了敲开心:0]]></title>
         <id>https://haifengchengguang.github.io/post/zhong-yu-you-yi-ge-bo-ke-liao-qiao-kai-xin-0/</id>
