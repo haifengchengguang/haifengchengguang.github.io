@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://haifengchengguang.github.io</id>
     <title>oceanwave</title>
-    <updated>2020-11-20T08:49:48.550Z</updated>
+    <updated>2020-11-20T08:50:37.866Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://haifengchengguang.github.io"/>
     <link rel="self" href="https://haifengchengguang.github.io/atom.xml"/>
@@ -25,12 +25,12 @@
         <link href="https://haifengchengguang.github.io/post/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>##这是Gridea的官方介绍页，个人感觉这是搭建博客最简单的一个方式。<br>
-👏  欢迎使用 <strong>Gridea</strong> ！<br>
+        <summary type="html"><![CDATA[<h2 id="这是gridea的官方介绍页个人感觉这是搭建博客最简单的一个方式">这是Gridea的官方介绍页，个人感觉这是搭建博客最简单的一个方式。</h2>
+<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
 ✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>##这是Gridea的官方介绍页，个人感觉这是搭建博客最简单的一个方式。<br>
-👏  欢迎使用 <strong>Gridea</strong> ！<br>
+        <content type="html"><![CDATA[<h2 id="这是gridea的官方介绍页个人感觉这是搭建博客最简单的一个方式">这是Gridea的官方介绍页，个人感觉这是搭建博客最简单的一个方式。</h2>
+<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
 ✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
 <!-- more -->
 <p><a href="https://github.com/getgridea/gridea">Github</a><br>
