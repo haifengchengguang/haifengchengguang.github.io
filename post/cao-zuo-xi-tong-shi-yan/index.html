@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>操作系统实验  | oceanwave</title>
-<link rel="shortcut icon" href="https://haifengchengguang.github.io/favicon.ico?v=1619162689719">
+<link rel="shortcut icon" href="https://haifengchengguang.github.io/favicon.ico?v=1619163428815">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://haifengchengguang.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="操作系统实验  | oceanwave - Atom Feed" href="https://haifengchengguang.github.io/atom.xml">
@@ -21,12 +21,11 @@
 
 
     <meta name="description" content="1.进程控制实验
+
+这个实验我用了vscode，顺道推荐一波kali linux，自带gcc,pyhon,java环境，用的是kde桌面非常舒服。
+
 实验题目
-编写一个父子协作进程，父进程创建一个子进程并控制它每隔 3 秒显示一次当前目录中的文件名列表。
-实验代码
-pctl.h
-#include &lt;sys/types.h&gt; 
-#include &lt;wai..." />
+编写一个父子协作进程，父进程创建一个子进程并控制它每隔 3 秒显示一次当前目录中..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -36,7 +35,7 @@ pctl.h
       <div class="main-content">
         <div class="site-header">
   <a href="https://haifengchengguang.github.io">
-  <img class="avatar" src="https://haifengchengguang.github.io/images/avatar.png?v=1619162689719" alt="">
+  <img class="avatar" src="https://haifengchengguang.github.io/images/avatar.png?v=1619163428815" alt="">
   </a>
   <h1 class="site-title">
     oceanwave
@@ -97,14 +96,17 @@ pctl.h
                 2021-04-23
               </span>
               <span>
-                2 min read
+                3 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>1.进程控制实验</p>
+                <h2 id="1进程控制实验">1.进程控制实验</h2>
+<ul>
+<li>这个实验我用了vscode，顺道推荐一波kali linux，自带gcc,pyhon,java环境，用的是kde桌面非常舒服。</li>
+</ul>
 <p>实验题目</p>
 <p>编写一个父子协作进程，父进程创建一个子进程并控制它每隔 3 秒显示一次当前目录中的文件名列表。<br>
 实验代码</p>
@@ -173,10 +175,29 @@ int main( int argc,char* argv[])
 <code>gcc pctl.o -o pctl</code></p>
 <p>运行结果<br>
 <img src="https://haifengchengguang.github.io/post-images/1619162601325.png" alt="" loading="lazy"></p>
+<h2 id="2进程通信实验">2.进程通信实验</h2>
+<ul>
+<li>从这个实验开始我用了clion，在linux里非常舒服，https://www.jetbrains.com/clion/download/#section=linux，从官网下载，解压，在命令行中打开clion-2021.1/bin/，./clion.sh 运行clion，激活就可以愉快地使用Clion了，本来打算学一下makefile，但是感觉这个东西学习成本太高，用处并不是很大，clion自带的cmake就很好用，c++项目管理一般用vs,cmke或qmake。</li>
+</ul>
+<p>实验题目</p>
+<p>请编程建立 3 个并发协作进程，它们分别完成 f(x,y)、f(x)、f(y)<br>
+f(x,y) = f(x) + f(y)<br>
+f(x) = f(x-1) * x (x &gt;1)<br>
+f(x)=1 (x=1)<br>
+f(y) = f(y-1) + f(y-2) (y&gt; 2)<br>
+f(y)=1 (y=1,2）</p>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%AE%9E%E9%AA%8C">1.进程控制实验</a></li>
+<li><a href="#2%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1%E5%AE%9E%E9%AA%8C">2.进程通信实验</a></li>
+</ul>
+</li>
+</ul>
+
               </div>
             </div>
           </article>

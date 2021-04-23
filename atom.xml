@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://haifengchengguang.github.io</id>
     <title>oceanwave</title>
-    <updated>2021-04-23T07:25:48.511Z</updated>
+    <updated>2021-04-23T07:37:10.729Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://haifengchengguang.github.io"/>
     <link rel="self" href="https://haifengchengguang.github.io/atom.xml"/>
@@ -17,7 +17,10 @@
         <link href="https://haifengchengguang.github.io/post/cao-zuo-xi-tong-shi-yan/">
         </link>
         <updated>2021-04-23T07:20:25.000Z</updated>
-        <content type="html"><![CDATA[<p>1.进程控制实验</p>
+        <content type="html"><![CDATA[<h2 id="1进程控制实验">1.进程控制实验</h2>
+<ul>
+<li>这个实验我用了vscode，顺道推荐一波kali linux，自带gcc,pyhon,java环境，用的是kde桌面非常舒服。</li>
+</ul>
 <p>实验题目</p>
 <p>编写一个父子协作进程，父进程创建一个子进程并控制它每隔 3 秒显示一次当前目录中的文件名列表。<br>
 实验代码</p>
@@ -86,6 +89,17 @@ int main( int argc,char* argv[])
 <code>gcc pctl.o -o pctl</code></p>
 <p>运行结果<br>
 <img src="https://haifengchengguang.github.io/post-images/1619162601325.png" alt="" loading="lazy"></p>
+<h2 id="2进程通信实验">2.进程通信实验</h2>
+<ul>
+<li>从这个实验开始我用了clion，在linux里非常舒服，https://www.jetbrains.com/clion/download/#section=linux，从官网下载，解压，在命令行中打开clion-2021.1/bin/，./clion.sh 运行clion，激活就可以愉快地使用Clion了，本来打算学一下makefile，但是感觉这个东西学习成本太高，用处并不是很大，clion自带的cmake就很好用，c++项目管理一般用vs,cmke或qmake。</li>
+</ul>
+<p>实验题目</p>
+<p>请编程建立 3 个并发协作进程，它们分别完成 f(x,y)、f(x)、f(y)<br>
+f(x,y) = f(x) + f(y)<br>
+f(x) = f(x-1) * x (x &gt;1)<br>
+f(x)=1 (x=1)<br>
+f(y) = f(y-1) + f(y-2) (y&gt; 2)<br>
+f(y)=1 (y=1,2）</p>
 ]]></content>
     </entry>
     <entry>
