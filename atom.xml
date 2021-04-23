@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://haifengchengguang.github.io</id>
     <title>oceanwave</title>
-    <updated>2021-04-23T07:40:40.577Z</updated>
+    <updated>2021-04-23T07:43:11.123Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://haifengchengguang.github.io"/>
     <link rel="self" href="https://haifengchengguang.github.io/atom.xml"/>
@@ -17,7 +17,8 @@
         <link href="https://haifengchengguang.github.io/post/cao-zuo-xi-tong-shi-yan/">
         </link>
         <updated>2021-04-23T07:20:25.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="1进程控制实验">1.进程控制实验</h2>
+        <content type="html"><![CDATA[<p align="right">edit at 23/4/2021</p>
+<h2 id="1进程控制实验">1.进程控制实验</h2>
 <ul>
 <li>这个实验我用了vscode，顺道推荐一波kali linux，自带gcc,pyhon,java环境，用的是kde桌面非常舒服。</li>
 </ul>
@@ -108,7 +109,8 @@ f(y)=1 (y=1,2）</p>
         <link href="https://haifengchengguang.github.io/post/ffmpeg-kai-fa-huan-jing-da-jian/">
         </link>
         <updated>2021-04-23T07:13:44.000Z</updated>
-        <content type="html"><![CDATA[<p>qt creater新建qt widgets application项目，kit selection选择mingw 64-bit，</p>
+        <content type="html"><![CDATA[<p align="right">edit at 23/4/2021</p>
+<p>qt creater新建qt widgets application项目，kit selection选择mingw 64-bit，</p>
 <p>下载ffmpeg，https://www.gyan.dev/ffmpeg/builds/</p>
 <p>下拉，选择https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full-shared.7z</p>
 <p><strong>SHA256:</strong> 4aaf80f0ee78a9eb5a1396742fd51d1624a705bfa7ce263e9b440b8be7db5650</p>
@@ -169,56 +171,17 @@ int main(int argc, char* argv[])
         <link href="https://haifengchengguang.github.io/post/shu-xue-jian-mo/">
         </link>
         <updated>2021-04-23T00:56:59.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="0latex语法">0.latex语法</h2>
-<h3 id="空格">空格</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">两个quad空格</th>
-<th style="text-align:center">a \qquad b</th>
-<th style="text-align:center"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mspace width="2em"/><mi>b</mi></mrow><annotation encoding="application/x-tex">a \qquad b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:2em;"></span><span class="mord mathdefault">b</span></span></span></span></th>
-<th style="text-align:center">两个m的宽度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">quad空格</td>
-<td style="text-align:center">a \quad b</td>
-<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mspace width="1em"/><mi>b</mi></mrow><annotation encoding="application/x-tex">a \quad b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">b</span></span></span></span></td>
-<td style="text-align:center">一个m的宽度</td>
-</tr>
-<tr>
-<td style="text-align:center">大空格</td>
-<td style="text-align:center">a\ b</td>
-<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mtext> </mtext><mi>b</mi></mrow><annotation encoding="application/x-tex">a\ b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace"> </span><span class="mord mathdefault">b</span></span></span></span></td>
-<td style="text-align:center">1/3m宽度</td>
-</tr>
-<tr>
-<td style="text-align:center">中等空格</td>
-<td style="text-align:center">a;b</td>
-<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mtext>  </mtext><mi>b</mi></mrow><annotation encoding="application/x-tex">a\;b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">b</span></span></span></span></td>
-<td style="text-align:center">2/7m宽度</td>
-</tr>
-<tr>
-<td style="text-align:center">小空格</td>
-<td style="text-align:center">a,b</td>
-<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mtext> </mtext><mi>b</mi></mrow><annotation encoding="application/x-tex">a\,b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span></span></span></span></td>
-<td style="text-align:center">1/6m宽度</td>
-</tr>
-<tr>
-<td style="text-align:center">没有空格</td>
-<td style="text-align:center">ab</td>
-<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>b</mi><mtext> </mtext></mrow><annotation encoding="application/x-tex">ab\,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span></span></span></span></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">紧贴</td>
-<td style="text-align:center">a!b</td>
-<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mtext> ⁣</mtext><mi>b</mi></mrow><annotation encoding="application/x-tex">a\!b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:-0.16666666666666666em;"></span><span class="mord mathdefault">b</span></span></span></span></td>
-<td style="text-align:center">缩进1/6m宽度</td>
-</tr>
-</tbody>
-</table>
+        <content type="html"><![CDATA[<p align="right">edit at 23/4/2021</p>
+## 0.latex语法 
+### 空格
+|两个quad空格	|a \qquad b	|$a \qquad b$|	两个m的宽度|
+| :-: | :-: | :-: | :-: |
+|quad空格	|a \quad b|	$a \quad b$|	一个m的宽度|
+|大空格|	a\ b|$a\ b$	|1/3m宽度|
+|中等空格|	a\;b|$a\;b$|	2/7m宽度|
+|小空格|	a\,b|$a\,b$|	1/6m宽度|
+|没有空格|	ab|	$ab\,$| 
+|紧贴	|a\!b|$a\!b$|缩进1/6m宽度|
 <h2 id="1线性规划">1.线性规划</h2>
 <h3 id="一个典型的线性规划问题">一个典型的线性规划问题</h3>
 <p>某机床厂生产甲、乙两种机床，每台销售后的利润分别为4000元与3000元。生产甲机床需用A、B机器加工，加工时间分别为每台2小时和1小时：生产乙机床需用A、B、C三种机器加工，加工时间为每台各一小时。若每天可用于加工的机器时数分别为机器10小时、机器8小时和C机器7小时，问该厂应生产甲、乙机床各几台，才能使总利润最大？</p>
