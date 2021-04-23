@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://haifengchengguang.github.io</id>
     <title>oceanwave</title>
-    <updated>2021-04-23T07:43:11.123Z</updated>
+    <updated>2021-04-23T13:32:44.027Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://haifengchengguang.github.io"/>
     <link rel="self" href="https://haifengchengguang.github.io/atom.xml"/>
@@ -11,6 +11,16 @@
     <logo>https://haifengchengguang.github.io/images/avatar.png</logo>
     <icon>https://haifengchengguang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, oceanwave</rights>
+    <entry>
+        <title type="html"><![CDATA[读了一篇绝世好文，感触良多]]></title>
+        <id>https://haifengchengguang.github.io/post/du-liao-yi-pian-jue-shi-hao-wen-gan-hong-liang-duo/</id>
+        <link href="https://haifengchengguang.github.io/post/du-liao-yi-pian-jue-shi-hao-wen-gan-hong-liang-duo/">
+        </link>
+        <updated>2021-04-23T13:28:37.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="https://mp.weixin.qq.com/s/lxwGvwGA_gDJEPUfao1Iug">从北大退学重考上清华，一个“985废物”的自我重构</a><br>
+<img src="https://haifengchengguang.github.io/post-images/1619184659125.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[操作系统实验 ]]></title>
         <id>https://haifengchengguang.github.io/post/cao-zuo-xi-tong-shi-yan/</id>
