@@ -1,84 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://haifengchengguang.github.io</id>
-    <title>oceanwave</title>
-    <updated>2021-04-23T07:18:17.153Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://haifengchengguang.github.io"/>
-    <link rel="self" href="https://haifengchengguang.github.io/atom.xml"/>
-    <subtitle>我很弱，但是我要坚强！绝不让那些为我付出过的人失望！
-</subtitle>
-    <logo>https://haifengchengguang.github.io/images/avatar.png</logo>
-    <icon>https://haifengchengguang.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2021, oceanwave</rights>
-    <entry>
-        <title type="html"><![CDATA[ffmpeg+qt开发环境搭建]]></title>
-        <id>https://haifengchengguang.github.io/post/ffmpeg-kai-fa-huan-jing-da-jian/</id>
-        <link href="https://haifengchengguang.github.io/post/ffmpeg-kai-fa-huan-jing-da-jian/">
-        </link>
-        <updated>2021-04-23T07:13:44.000Z</updated>
-        <content type="html"><![CDATA[<p>qt creater新建qt widgets application项目，kit selection选择mingw 64-bit，</p>
-<p>下载ffmpeg，https://www.gyan.dev/ffmpeg/builds/</p>
-<p>下拉，选择https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full-shared.7z</p>
-<p><strong>SHA256:</strong> 4aaf80f0ee78a9eb5a1396742fd51d1624a705bfa7ce263e9b440b8be7db5650</p>
-<p>将下载好的文件解压，放到项目文件中</p>
-<p>将以下代码复制到.pro文件中</p>
-<pre><code>TEMPLATE = app
-CONFIG += console c++11
-CONFIG -= app_bundle
-CONFIG -= qt
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>数学建模(未完待续) | oceanwave</title>
+<link rel="shortcut icon" href="https://haifengchengguang.github.io/favicon.ico?v=1619162270487">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://haifengchengguang.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="数学建模(未完待续) | oceanwave - Atom Feed" href="https://haifengchengguang.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
-INCLUDEPATH += $$PWD/ffmpeg/include
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-183666884-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-LIBS += $$PWD/ffmpeg/lib/avcodec.lib \
-        $$PWD/ffmpeg/lib/avdevice.lib \
-        $$PWD/ffmpeg/lib/avfilter.lib \
-        $$PWD/ffmpeg/lib/avformat.lib \
-        $$PWD/ffmpeg/lib/avutil.lib \
-        $$PWD/ffmpeg/lib/postproc.lib \
-        $$PWD/ffmpeg/lib/swresample.lib \
-        $$PWD/ffmpeg/lib/swscale.lib
+  gtag('config', 'UA-183666884-1');
+</script>
 
 
-LIBS += -L$$PWD/ffmpeg/bin -lavcodec-58
-LIBS += -L$$PWD/ffmpeg/bin -lavdevice-58
-LIBS += -L$$PWD/ffmpeg/bin -lavformat-58
-LIBS += -L$$PWD/ffmpeg/bin -lpostproc-55
-LIBS += -L$$PWD/ffmpeg/bin -lswresample-3
-LIBS += -L$$PWD/ffmpeg/bin -lswscale-5
-</code></pre>
-<p>将以下代码复制到main.cpp中</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+    <meta name="description" content="0.latex语法
+空格
 
-#define __STDC_CONSTANT_MACROS
 
-extern &quot;C&quot;
-{
-#include &quot;libavcodec/avcodec.h&quot;
-};
 
-int main(int argc, char* argv[])
-{
-    printf(&quot;%s&quot;, avcodec_configuration());
-    return 0;
-}
-</code></pre>
-<p>重新打开qt creater</p>
-<p>运行</p>
-<p>弹出窗口</p>
-<pre><code>--enable-gpl --enable-version3 --enable-shared --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-lzma --enable-libsnappy --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-sdl2 --enable-libdav1d --enable-libzvbi --enable-librav1e --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-ffnvcodec --enable-nvdec --enable-nvenc --enable-d3d11va --enable-dxva2 --enable-libmfx --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libilbc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
-</code></pre>
-<p>说明环境已经配置好了，可以进行开发了</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[数学建模(未完待续)]]></title>
-        <id>https://haifengchengguang.github.io/post/shu-xue-jian-mo/</id>
-        <link href="https://haifengchengguang.github.io/post/shu-xue-jian-mo/">
-        </link>
-        <updated>2021-04-23T00:56:59.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="0latex语法">0.latex语法</h2>
+两个quad空格
+a \qquad b
+aba \qquad bab
+两个m的宽度
+
+
+
+
+quad空格
+a \quad b
+aba \quad bab
+一个m的宽度
+
+
+大空格
+a\ b
+a ba\ ba ..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://haifengchengguang.github.io">
+  <img class="avatar" src="https://haifengchengguang.github.io/images/avatar.png?v=1619162270487" alt="">
+  </a>
+  <h1 class="site-title">
+    oceanwave
+  </h1>
+  <p class="site-description">
+    我很弱，但是我要坚强！绝不让那些为我付出过的人失望！
+
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              数学建模(未完待续)
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-04-23
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="0latex语法">0.latex语法</h2>
 <h3 id="空格">空格</h3>
 <table>
 <thead>
@@ -141,49 +182,124 @@ int main(int argc, char* argv[])
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.79444em;vertical-align:-0.15em;"></span><span class="mord">4</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.79444em;vertical-align:-0.15em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
 <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi mathvariant="normal">.</mi><mi>t</mi><mi mathvariant="normal">.</mi><mn>2</mn><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>x</mi><mn>2</mn></msub><mo>≤</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">s.t.2x_{1}+x_{2} \le10 
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.79444em;vertical-align:-0.15em;"></span><span class="mord mathdefault">s</span><span class="mord">.</span><span class="mord mathdefault">t</span><span class="mord">.</span><span class="mord">2</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.7859700000000001em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span></span></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[终于有一个博客了敲开心:0]]></title>
-        <id>https://haifengchengguang.github.io/post/zhong-yu-you-yi-ge-bo-ke-liao-qiao-kai-xin-0/</id>
-        <link href="https://haifengchengguang.github.io/post/zhong-yu-you-yi-ge-bo-ke-liao-qiao-kai-xin-0/">
-        </link>
-        <updated>2020-11-19T12:51:42.000Z</updated>
-        <content type="html"><![CDATA[<p>找了一个最省事的方法，Gridea+github page，之后可能会在IPFS上部署一个。😆😆😆</p>
-<p align="right">edit at 20/11/2020</p>]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://haifengchengguang.github.io/post/hello-gridea/</id>
-        <link href="https://haifengchengguang.github.io/post/hello-gridea/">
-        </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="这是gridea的官方介绍页个人感觉这是搭建博客最简单的一个方式">这是Gridea的官方介绍页，个人感觉这是搭建博客最简单的一个方式</h3>
-<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="这是gridea的官方介绍页个人感觉这是搭建博客最简单的一个方式">这是Gridea的官方介绍页，个人感觉这是搭建博客最简单的一个方式</h3>
-<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
-<p align="right">edit at 21/11/2020</p>]]></content>
-    </entry>
-</feed>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#0latex%E8%AF%AD%E6%B3%95">0.latex语法</a>
+<ul>
+<li><a href="#%E7%A9%BA%E6%A0%BC">空格</a></li>
+</ul>
+</li>
+<li><a href="#1%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92">1.线性规划</a>
+<ul>
+<li><a href="#%E4%B8%80%E4%B8%AA%E5%85%B8%E5%9E%8B%E7%9A%84%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98">一个典型的线性规划问题</a></li>
+<li><a href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90">问题分析</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://haifengchengguang.github.io/post/zhong-yu-you-yi-ge-bo-ke-liao-qiao-kai-xin-0/">
+              <h3 class="post-title">
+                终于有一个博客了敲开心:0
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '63c0bfa87a1ab53cda5a',
+    clientSecret: '3c965a70a126262606a09e95e10ec879953085d0',
+    repo: 'haifengchengguang.github.io',
+    owner: 'haifengchengguang',
+    admin: ['haifengchengguang'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+   <div>
+    <a href="https://gridea.dev/" target="_blank">Powered by Gridea&#65281;</a>
+  </div>
+  <div>
+    <strong><i>你是人间的四月天❤</i></strong>
+  <a class="rss" href="https://haifengchengguang.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

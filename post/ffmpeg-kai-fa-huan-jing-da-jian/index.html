@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | oceanwave</title>
+<title>ffmpeg+qt开发环境搭建 | oceanwave</title>
 <link rel="shortcut icon" href="https://haifengchengguang.github.io/favicon.ico?v=1619162270487">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://haifengchengguang.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | oceanwave - Atom Feed" href="https://haifengchengguang.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="ffmpeg+qt开发环境搭建 | oceanwave - Atom Feed" href="https://haifengchengguang.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
@@ -20,17 +20,9 @@
 </script>
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-记录自己的生活，技术、历史、思考😄
-👨‍💻 博主是谁
-博主不愿透露姓名😁
-📬 联系我呀
-联系我干嘛，哼😕
-🌈本博客的github短链接
-https://git.io/..." />
+    <meta name="description" content="qt creater新建qt widgets application项目，kit selection选择mingw 64-bit，
+下载ffmpeg，https://www.gyan.dev/ffmpeg/builds/
+下拉，选择http..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -94,61 +86,91 @@ https://git.io/..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              ffmpeg+qt开发环境搭建
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2021-04-23
               </span>
               <span>
-                1 min read
+                3 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>记录自己的生活，技术、历史、思考😄</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>博主不愿透露姓名😁</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>联系我干嘛，哼😕</p>
-<h2 id="本博客的github短链接">🌈本博客的github短链接</h2>
-<h3 id="httpsgitiojkedp"><a href="https://git.io/JkEdP">https://git.io/JkEdP</a></h3>
-<h2 id="友链">🚀 友链</h2>
-<h3 id="wamtostaro"><a href="https://WamtoStaro-ui.GitHub.io">WamtoStaro</a> 💕</h3>
-<p align="right">edit at 20/11/2020</p>
+                <p>qt creater新建qt widgets application项目，kit selection选择mingw 64-bit，</p>
+<p>下载ffmpeg，https://www.gyan.dev/ffmpeg/builds/</p>
+<p>下拉，选择https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full-shared.7z</p>
+<p><strong>SHA256:</strong> 4aaf80f0ee78a9eb5a1396742fd51d1624a705bfa7ce263e9b440b8be7db5650</p>
+<p>将下载好的文件解压，放到项目文件中</p>
+<p>将以下代码复制到.pro文件中</p>
+<pre><code>TEMPLATE = app
+CONFIG += console c++11
+CONFIG -= app_bundle
+CONFIG -= qt
+
+
+INCLUDEPATH += $$PWD/ffmpeg/include
+
+LIBS += $$PWD/ffmpeg/lib/avcodec.lib \
+        $$PWD/ffmpeg/lib/avdevice.lib \
+        $$PWD/ffmpeg/lib/avfilter.lib \
+        $$PWD/ffmpeg/lib/avformat.lib \
+        $$PWD/ffmpeg/lib/avutil.lib \
+        $$PWD/ffmpeg/lib/postproc.lib \
+        $$PWD/ffmpeg/lib/swresample.lib \
+        $$PWD/ffmpeg/lib/swscale.lib
+
+
+LIBS += -L$$PWD/ffmpeg/bin -lavcodec-58
+LIBS += -L$$PWD/ffmpeg/bin -lavdevice-58
+LIBS += -L$$PWD/ffmpeg/bin -lavformat-58
+LIBS += -L$$PWD/ffmpeg/bin -lpostproc-55
+LIBS += -L$$PWD/ffmpeg/bin -lswresample-3
+LIBS += -L$$PWD/ffmpeg/bin -lswscale-5
+</code></pre>
+<p>将以下代码复制到main.cpp中</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+#define __STDC_CONSTANT_MACROS
+
+extern &quot;C&quot;
+{
+#include &quot;libavcodec/avcodec.h&quot;
+};
+
+int main(int argc, char* argv[])
+{
+    printf(&quot;%s&quot;, avcodec_configuration());
+    return 0;
+}
+</code></pre>
+<p>重新打开qt creater</p>
+<p>运行</p>
+<p>弹出窗口</p>
+<pre><code>--enable-gpl --enable-version3 --enable-shared --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-lzma --enable-libsnappy --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-sdl2 --enable-libdav1d --enable-libzvbi --enable-librav1e --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-ffnvcodec --enable-nvdec --enable-nvenc --enable-d3d11va --enable-dxva2 --enable-libmfx --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libilbc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+</code></pre>
+<p>说明环境已经配置好了，可以进行开发了</p>
+
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-<li><a href="#%E6%9C%AC%E5%8D%9A%E5%AE%A2%E7%9A%84github%E7%9F%AD%E9%93%BE%E6%8E%A5">🌈本博客的github短链接</a>
-<ul>
-<li><a href="#httpsgitiojkedp">https://git.io/JkEdP</a></li>
-</ul>
-</li>
-<li><a href="#%E5%8F%8B%E9%93%BE">🚀 友链</a>
-<ul>
-<li><a href="#wamtostaro">WamtoStaro</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://haifengchengguang.github.io/post/shu-xue-jian-mo/">
+              <h3 class="post-title">
+                数学建模(未完待续)
+              </h3>
+            </a>
+          </div>
         
 
         
