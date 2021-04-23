@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://haifengchengguang.github.io</id>
     <title>oceanwave</title>
-    <updated>2021-04-23T07:18:17.153Z</updated>
+    <updated>2021-04-23T07:25:48.511Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://haifengchengguang.github.io"/>
     <link rel="self" href="https://haifengchengguang.github.io/atom.xml"/>
@@ -11,6 +11,83 @@
     <logo>https://haifengchengguang.github.io/images/avatar.png</logo>
     <icon>https://haifengchengguang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, oceanwave</rights>
+    <entry>
+        <title type="html"><![CDATA[操作系统实验 ]]></title>
+        <id>https://haifengchengguang.github.io/post/cao-zuo-xi-tong-shi-yan/</id>
+        <link href="https://haifengchengguang.github.io/post/cao-zuo-xi-tong-shi-yan/">
+        </link>
+        <updated>2021-04-23T07:20:25.000Z</updated>
+        <content type="html"><![CDATA[<p>1.进程控制实验</p>
+<p>实验题目</p>
+<p>编写一个父子协作进程，父进程创建一个子进程并控制它每隔 3 秒显示一次当前目录中的文件名列表。<br>
+实验代码</p>
+<p>pctl.h</p>
+<pre><code class="language-c">#include &lt;sys/types.h&gt; 
+#include &lt;wait.h&gt; 
+#include &lt;unistd.h&gt; 
+#include &lt;signal.h&gt; 
+#include &lt;stdio.h&gt; 
+#include &lt;stdlib.h&gt; //进程自定义的键盘中断信号处理函数
+ typedef void (*sighandler_t) (int); 
+ void sigcat()
+ { 
+     printf(&quot;%d Process continue\n&quot;,getpid());
+     }
+</code></pre>
+<p>pctl.c</p>
+<pre><code class="language-c">#include &quot;pctl.h&quot;
+int main( int argc,char* argv[])
+{
+    int t;
+    int pid;
+    int status;
+    int childpid;
+    char *args[]={&quot;/bin/ls&quot;,&quot;-a&quot;,NULL};
+    signal(SIGUSR1,(sighandler_t)sigcat);
+    pid=fork();
+    if(pid&lt;0)
+    {
+        printf(&quot;Create Process fail!\n&quot;);
+    }
+    if(pid==0)
+    {
+        while ((1))
+        {
+            pause();
+            childpid=fork();
+            if(childpid&lt;0)
+                exit(EXIT_FAILURE);
+            if(childpid==0)
+               { //printf(&quot;I am child process %d\n&quot;,getpid());
+                printf(&quot;child process will Running:\n&quot;);
+                status=execve(args[0],args,NULL);}
+           
+           
+            }
+
+
+        }
+    else{
+                printf(&quot;I am parent process %d\n&quot;,getpid());
+                while (1)
+                {
+                    /* code */
+                    sleep(3);
+                    kill(pid,SIGUSR1);
+                    printf(&quot;%d prarent sent siganl:\n&quot;,getpid());
+                    
+                }
+    }
+    return EXIT_SUCCESS;
+}
+</code></pre>
+<p>编译<br>
+<code>gcc -c pctl.c -o pctl.o</code><br>
+<code>gcc pctl.o -o pctl</code></p>
+<p>运行结果<br>
+<img src="https://haifengchengguang.github.io/post-images/1619162601325.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ffmpeg+qt开发环境搭建]]></title>
         <id>https://haifengchengguang.github.io/post/ffmpeg-kai-fa-huan-jing-da-jian/</id>
