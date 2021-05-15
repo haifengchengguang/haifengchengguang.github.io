@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://haifengchengguang.github.io</id>
     <title>oceanwave</title>
-    <updated>2021-04-24T01:48:06.891Z</updated>
+    <updated>2021-05-15T09:41:13.910Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://haifengchengguang.github.io"/>
     <link rel="self" href="https://haifengchengguang.github.io/atom.xml"/>
@@ -11,19 +11,6 @@
     <logo>https://haifengchengguang.github.io/images/avatar.png</logo>
     <icon>https://haifengchengguang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, oceanwave</rights>
-    <entry>
-        <title type="html"><![CDATA[读了一篇绝世好文，感触良多]]></title>
-        <id>https://haifengchengguang.github.io/post/du-liao-yi-pian-jue-shi-hao-wen-gan-hong-liang-duo/</id>
-        <link href="https://haifengchengguang.github.io/post/du-liao-yi-pian-jue-shi-hao-wen-gan-hong-liang-duo/">
-        </link>
-        <updated>2021-04-23T13:28:37.000Z</updated>
-        <content type="html"><![CDATA[<p><a href="https://mp.weixin.qq.com/s/lxwGvwGA_gDJEPUfao1Iug">从北大退学重考上清华，一个“985废物”的自我重构</a><br>
-<img src="https://haifengchengguang.github.io/post-images/1619184659125.png" alt="" loading="lazy"><br>
-又到了我最不喜欢的复盘环节，开始沉重的心情之前先来点<a href="https://gist.github.com/rxaviers/7360908">markdown表情包</a>😏。<br>
-😆可可爱爱，没有脑袋😝<br>
-整个cheng'zhang'g</p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[操作系统实验 ]]></title>
         <id>https://haifengchengguang.github.io/post/cao-zuo-xi-tong-shi-yan/</id>
@@ -176,38 +163,6 @@ int main(int argc, char* argv[])
 <pre><code>--enable-gpl --enable-version3 --enable-shared --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-lzma --enable-libsnappy --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-sdl2 --enable-libdav1d --enable-libzvbi --enable-librav1e --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-ffnvcodec --enable-nvdec --enable-nvenc --enable-d3d11va --enable-dxva2 --enable-libmfx --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libilbc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
 </code></pre>
 <p>说明环境已经配置好了，可以进行开发了</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[数学建模(未完待续)]]></title>
-        <id>https://haifengchengguang.github.io/post/shu-xue-jian-mo/</id>
-        <link href="https://haifengchengguang.github.io/post/shu-xue-jian-mo/">
-        </link>
-        <updated>2021-04-23T00:56:59.000Z</updated>
-        <content type="html"><![CDATA[<p align="right">edit at 23/4/2021</p>
-## 0.latex语法 
-### 空格
-|两个quad空格	|a \qquad b	|$a \qquad b$|	两个m的宽度|
-| :-: | :-: | :-: | :-: |
-|quad空格	|a \quad b|	$a \quad b$|	一个m的宽度|
-|大空格|	a\ b|$a\ b$	|1/3m宽度|
-|中等空格|	a\;b|$a\;b$|	2/7m宽度|
-|小空格|	a\,b|$a\,b$|	1/6m宽度|
-|没有空格|	ab|	$ab\,$| 
-|紧贴	|a\!b|$a\!b$|缩进1/6m宽度|
-<h2 id="1线性规划">1.线性规划</h2>
-<h3 id="一个典型的线性规划问题">一个典型的线性规划问题</h3>
-<p>某机床厂生产甲、乙两种机床，每台销售后的利润分别为4000元与3000元。生产甲机床需用A、B机器加工，加工时间分别为每台2小时和1小时：生产乙机床需用A、B、C三种机器加工，加工时间为每台各一小时。若每天可用于加工的机器时数分别为机器10小时、机器8小时和C机器7小时，问该厂应生产甲、乙机床各几台，才能使总利润最大？</p>
-<h3 id="问题分析">问题分析</h3>
-<p>这个问题是一个十分典型的线性规划问题，首先对问题提取出关键信息：</p>
-<p>决策：生产几台甲、乙机床<br>
-优化目标：总利润最大<br>
-约束：生产机床的使用时间有限</p>
-<p>将上诉三个要素写成数学表达式，就是一个典型的线性规划模型：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>a</mi><mi>x</mi><mspace width="1em"/><mi>z</mi><mo>=</mo><mn>4</mn><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><mn>3</mn><msub><mi>x</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">max \quad z=4x_{1}+3x_{2} 
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.79444em;vertical-align:-0.15em;"></span><span class="mord">4</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.79444em;vertical-align:-0.15em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi mathvariant="normal">.</mi><mi>t</mi><mi mathvariant="normal">.</mi><mn>2</mn><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>x</mi><mn>2</mn></msub><mo>≤</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">s.t.2x_{1}+x_{2} \le10 
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.79444em;vertical-align:-0.15em;"></span><span class="mord mathdefault">s</span><span class="mord">.</span><span class="mord mathdefault">t</span><span class="mord">.</span><span class="mord">2</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.7859700000000001em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span></span></p>
 ]]></content>
     </entry>
     <entry>
