@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://haifengchengguang.github.io</id>
     <title>oceanwave</title>
-    <updated>2021-05-15T09:41:13.910Z</updated>
+    <updated>2021-05-18T11:33:04.274Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://haifengchengguang.github.io"/>
     <link rel="self" href="https://haifengchengguang.github.io/atom.xml"/>
@@ -11,6 +11,279 @@
     <logo>https://haifengchengguang.github.io/images/avatar.png</logo>
     <icon>https://haifengchengguang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, oceanwave</rights>
+    <entry>
+        <title type="html"><![CDATA[c++ pta]]></title>
+        <id>https://haifengchengguang.github.io/post/c-pta/</id>
+        <link href="https://haifengchengguang.github.io/post/c-pta/">
+        </link>
+        <updated>2021-05-18T06:10:45.000Z</updated>
+        <content type="html"><![CDATA[<p>6-1 类模板Point的定义与使用 (10 分)<br>
+定义类模板Point，有两个坐标(x,y)，x和y的类型可以不同，坐标的数据类型可以是int、float,double类型. 具有获取坐标的成员函数getX和getY。</p>
+<p>接口定义：</p>
+<p><code>class Point</code><br>
+裁判测试程序</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+@@@
+
+int main()
+{
+
+    Point&lt;int, int&gt; p1(10, 20);
+    Point&lt;int, float&gt; p2(10, 20.5f);
+    Point&lt;float, float&gt; p3(10.5f, 20.5f);
+    Point&lt;double, double &gt; p4(10.5, 20.5);
+    cout&lt;&lt;p1.getX()&lt;&lt;&quot;,&quot;&lt;&lt;p1.getY()&lt;&lt;endl;
+    cout&lt;&lt;p2.getX()&lt;&lt;&quot;,&quot;&lt;&lt;p2.getY()&lt;&lt;endl;
+    cout&lt;&lt;p3.getX()&lt;&lt;&quot;,&quot;&lt;&lt;p3.getY()&lt;&lt;endl;
+    cout&lt;&lt;p4.getX()&lt;&lt;&quot;,&quot;&lt;&lt;p4.getY()&lt;&lt;endl;
+  return 0;
+
+}
+
+/* 请在这里填写答案 */
+</code></pre>
+<p>10,20<br>
+10,20.5<br>
+10.5,20.5<br>
+10.5,20.5</p>
+<pre><code class="language-c++">template&lt;class T,class U&gt;
+class Point
+{
+public:
+	T x;
+	U y;
+	Point(T x,U y)
+	{
+		this-&gt;x = x;
+		this-&gt;y = y;
+	}
+	T getX() const;
+	U getY() const;
+	
+};
+template &lt;class T, class U&gt;
+T Point&lt;T, U&gt;::getX() const
+{
+	return x;
+}
+template &lt;class T, class U&gt;
+U Point&lt;T, U&gt;::getY() const
+{
+	return y;
+}
+</code></pre>
+<p>7-1 设计一个矩形类Rectangle并创建测试程序（C++） (10 分)<br>
+设计一个名为Rectangle的矩形类，这个类包括：两个名为width和height的double数据域，它们分别表示矩形的宽和高。width和height的默认值都为1.该类包括矩形类的无参构造函数（默认构造函数）；一个width和height为指定值的矩形构造函数；一个名为getArea( )的函数返回矩形的面积；一个名为getPerimeter( )的函数返回矩形的周长。请实现这个类。编写一个测试程序，创建一个Rectangle对象，从键盘输入矩形的宽和高，然后输出矩形的面积和周长。</p>
+<p>输入格式:<br>
+3.5 35.9（第一个数表示矩形的宽，第二个数表示矩形的高，中间是空间分隔。）</p>
+<p>输出格式:<br>
+125.65 （第一行输出矩形的面积） 78.8 （第二行输出矩形的周长）</p>
+<p>输入样例:<br>
+3.5 35.9<br>
+输出样例:<br>
+125.65<br>
+78.8</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+class Rectangle
+{
+public:
+	double width;
+	double height;
+	Rectangle()
+	{
+		width = 1.0;
+		height = 1.0;
+	}
+	Rectangle(double width,double height)
+	{
+		this-&gt;height = height;
+		this-&gt;width = width;
+	}
+	double getArea();
+	double getPerimeter();
+	
+};
+double Rectangle::getArea()
+{
+	return height * width;
+}
+double Rectangle::getPerimeter()
+{
+	return height * 2.0 + width * 2.0;
+}
+
+int main()
+{
+	double height, width;
+	cin &gt;&gt; height &gt;&gt; width;
+	Rectangle rectangle(width,height);
+	cout &lt;&lt; rectangle.getArea() &lt;&lt; endl;
+	cout &lt;&lt; rectangle.getPerimeter() &lt;&lt; endl;
+	
+	
+	
+}
+</code></pre>
+<p>7-2 复数类的运算 (10 分)<br>
+根据以下代码段完善 ?? 处内容及程序内容，以实现规定的输出。</p>
+<p>class Complex<br>
+{<br>
+public:<br>
+Complex(double r=0, double i=0):real(r), imag(i){    }<br>
+Complex operator+( ?? ) const;//重载双目运算符'+'<br>
+Complex operator-=( ?? ); //重载双目运算符'-='<br>
+friend Complex operator-( ?? ) const;//重载双目运算符'-'<br>
+void Display() const;<br>
+private:<br>
+double real;<br>
+double imag;<br>
+};</p>
+<p>void Complex::Display() const<br>
+{<br>
+cout &lt;&lt; &quot;(&quot; &lt;&lt; real &lt;&lt; &quot;, &quot; &lt;&lt; imag &lt;&lt; &quot;)&quot; &lt;&lt; endl;<br>
+}</p>
+<p>int main()<br>
+{<br>
+double r, m;<br>
+cin &gt;&gt; r &gt;&gt; m;<br>
+Complex c1(r, m);<br>
+cin &gt;&gt; r &gt;&gt; m;<br>
+Complex c2(r, m);<br>
+Complex c3 = c1+c2;<br>
+c3.Display();<br>
+c3 = c1-c2;<br>
+c3.Display();<br>
+c3 -= c1;<br>
+c3.Display();<br>
+return 0;<br>
+}<br>
+输入格式:<br>
+输入有两行，分别为两个复数的实部与虚部。</p>
+<p>输出格式:<br>
+按样例格式输出结果。</p>
+<p>输入样例:<br>
+在这里给出一组输入。例如：</p>
+<p>4 2<br>
+3 -5<br>
+输出样例:<br>
+在这里给出相应的输出。例如：</p>
+<p>(7, -3)<br>
+(1, 7)<br>
+(-3, 5)</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+class Complex
+{
+public:
+    Complex(double r = 0, double i = 0) :real(r), imag(i) {    }
+    Complex operator+(const Complex&amp; c) const;//重载双目运算符'+' 括号内取地址，不能修改；最后一个const表示不修改类
+    Complex operator-=(const Complex&amp; c); //重载双目运算符'-='
+    friend Complex operator-( const Complex&amp; b,const Complex&amp; c ) ;//重载双目运算符'-'
+    void Display() const;
+private:
+    double real;
+    double imag;
+};
+
+void Complex::Display() const
+{
+    cout &lt;&lt; &quot;(&quot; &lt;&lt; real &lt;&lt; &quot;, &quot; &lt;&lt; imag &lt;&lt; &quot;)&quot; &lt;&lt; endl;
+}
+Complex Complex::operator+(const Complex&amp; c)const
+{
+    return  Complex(real + c.real, imag + c.imag);
+}
+Complex Complex::operator-=(const Complex&amp; c) 
+{
+    return Complex(real -= c.real, imag -= c.imag);
+}
+Complex operator-(const Complex&amp; b,const Complex&amp; c)
+{
+    return Complex(b.real-c.real,b.imag-c.imag);
+}
+int main()
+{
+    double r, m;
+    cin &gt;&gt; r &gt;&gt; m;
+    Complex c1(r, m);
+    cin &gt;&gt; r &gt;&gt; m;
+    Complex c2(r, m);
+    Complex c3 = c1+c2;
+    c3.Display();
+    c3 = c1-c2;
+    c3.Display();
+    c3 -= c1;
+    c3.Display();
+    return 0;
+}
+</code></pre>
+<p>7-3 复数的比较 (10 分)<br>
+题目描述：建立一个复数类，实数和虚数是其私有数据成员。建立一个&gt;（大于号）的运算符重载，比较两个复数间模的大小。</p>
+<p>输入格式：测试输入包含若干测试用例，每个测试用例占一行。每个测试用例包括四个数字，前两个数字分别表示第一个复数的实部和虚部，第三个和第四个数字分别表示第二个复数的实部和虚部。每个数字之间用空格间隔。当读入一个测试用例是0 0 0 0时输入结束，相应的结果不要输出。</p>
+<p>输出格式：对每个测试用例输出一行。当第一个复数的模大于第二个复数的模时，输出 true ，当第一个复数的模小于或等于第二个复数的模时，输出false</p>
+<p>输入样例：</p>
+<p>3 5 4 0</p>
+<p>0 3 4 1</p>
+<p>0 0 0 0</p>
+<p>输出样例：</p>
+<p>true</p>
+<p>false</p>
+<pre><code class="language-c++">// negativeNumberCompare.cpp : 此文件包含 &quot;main&quot; 函数。程序执行将在此处开始并结束。
+//
+
+#include &lt;iostream&gt;
+using namespace std;
+
+class negativeNumber
+{
+public:
+	friend bool operator&gt;(const negativeNumber&amp; b, const negativeNumber&amp; c);
+	negativeNumber(double r = 0, double i = 0) : real(r),imag(i){}
+	//bool operator&gt;(const negativeNumber&amp; b) const;
+private:
+	double real;
+	double imag;
+
+};
+//bool negativeNumber::operator&gt;(const negativeNumber&amp; b) const
+//{
+//	return (real * real + imag * imag) &gt; (b.real * b.real + b.imag * b.imag);
+//}
+bool operator&gt;(const negativeNumber&amp; b, const negativeNumber&amp; c)
+{
+	return  (b.real * b.real + b.imag * b.imag)&gt; (c.real * c.real + c.imag * c.imag);
+}
+int main()
+{
+	/*negativeNumber b(1, 1);
+	negativeNumber c(2, 2);
+	if (b &gt; c)
+	{
+		cout &lt;&lt; &quot;error&quot; &lt;&lt; endl;
+	}
+	else cout &lt;&lt; &quot;correct&quot; &lt;&lt; endl;*/
+	while (true)
+	{
+		int a, b, c, d;
+		cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d;
+		if (a == 0 &amp;&amp; b == 0 &amp;&amp; c == 0 &amp;&amp; d == 0) break;
+		negativeNumber x(a, b);
+		negativeNumber y(c, d);
+		if (x &gt; y) cout &lt;&lt; &quot;true&quot; &lt;&lt; endl;
+		else cout &lt;&lt; &quot;false&quot; &lt;&lt; endl;
+	}
+	
+	
+}
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[操作系统实验 ]]></title>
         <id>https://haifengchengguang.github.io/post/cao-zuo-xi-tong-shi-yan/</id>
