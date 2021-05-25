@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>终于有一个博客了敲开心:0 | oceanwave</title>
+<title>面向对象设计原则 | oceanwave</title>
 <link rel="shortcut icon" href="https://haifengchengguang.github.io/favicon.ico?v=1621937080512">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://haifengchengguang.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="终于有一个博客了敲开心:0 | oceanwave - Atom Feed" href="https://haifengchengguang.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="面向对象设计原则 | oceanwave - Atom Feed" href="https://haifengchengguang.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
@@ -20,8 +20,10 @@
 </script>
 
 
-    <meta name="description" content="找了一个最省事的方法，Gridea+github page，之后可能会在IPFS上部署一个。😆😆😆
-edit at 20/11/2020" />
+    <meta name="description" content="Single Responsibility Principle：单一职责原则
+单一职责原则简称 SRP ，顾名思义，就是一个类只负责一个职责。那这个原则有什么用呢，它让类的职责更单一。
+Open Closed Principle：开闭原则
+..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -85,27 +87,54 @@ edit at 20/11/2020" />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              终于有一个博客了敲开心:0
+              面向对象设计原则
             </h2>
             <div class="post-info">
               <span>
-                2020-11-19
+                2021-05-25
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
             </div>
             
-              <img class="post-feature-image" src="https://haifengchengguang.github.io/post-images/zhong-yu-you-yi-ge-bo-ke-liao-qiao-kai-xin-0.png" alt="">
-            
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>找了一个最省事的方法，Gridea+github page，之后可能会在IPFS上部署一个。😆😆😆</p>
-<p align="right">edit at 20/11/2020</p>
+                <h3 id="single-responsibility-principle单一职责原则">Single Responsibility Principle：单一职责原则</h3>
+<p>单一职责原则简称 SRP ，顾名思义，就是一个类只负责一个职责。那这个原则有什么用呢，它让类的职责更单一。</p>
+<h3 id="open-closed-principle开闭原则">Open Closed Principle：开闭原则</h3>
+<p>一个软件实体，如类、模块和函数应该对扩展开放，对修改关闭</p>
+<h3 id="liskov-substitution-principle里氏替换原则">Liskov Substitution Principle：里氏替换原则</h3>
+<p>如果对每一个类型为T1的对象o1，都有类型为T2的对象o2，使得以T1定义的所有程序P在所有的对象o1都替换成o2时，程序P的行为没有变化，那么类型T2是类型T1的子类型。</p>
+<p>换言之，一个软件实体如果使用的是一个基类的话，那么一定适用于其子类，而且它根本不能察觉出基类对象和子类对象的区别。</p>
+<p>比如，假设有两个类，一个是Base类，另一个是Child类，并且Child类是Base的子类。那么一个方法如果可以接受一个基类对象b的话:method1(Base b)那么它必然可以接受一个子类的对象method1(Child c).</p>
+<p>里氏替换原则是继承复用的基石。只有当衍生类可以替换掉基类，软件单位的功能不会受到影响时，基类才能真正的被复用，而衍生类也才能够在基类的基础上增加新的行为。</p>
+<p>但是需要注意的是，反过来的代换是不能成立的，如果一个软件实体使用的是一个子类的话，那么它不一定适用于基类。如果一个方法method2接受子类对象为参数的话method2(Child c)，那么一般而言不可以有method2(b).</p>
+<h3 id="law-of-demeter迪米特法则">Law of Demeter：迪米特法则</h3>
+<p>如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。其目的是降低类之间的耦合度，提高模块的相对独立性。</p>
+<h3 id="interface-segregation-principle接口隔离原则">Interface Segregation Principle：接口隔离原则</h3>
+<h3 id="dependence-inversion-principle依赖倒置原则">Dependence Inversion Principle：依赖倒置原则</h3>
+
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#single-responsibility-principle%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99">Single Responsibility Principle：单一职责原则</a></li>
+<li><a href="#open-closed-principle%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99">Open Closed Principle：开闭原则</a></li>
+<li><a href="#liskov-substitution-principle%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99">Liskov Substitution Principle：里氏替换原则</a></li>
+<li><a href="#law-of-demeter%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99">Law of Demeter：迪米特法则</a></li>
+<li><a href="#interface-segregation-principle%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99">Interface Segregation Principle：接口隔离原则</a></li>
+<li><a href="#dependence-inversion-principle%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99">Dependence Inversion Principle：依赖倒置原则</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
               </div>
             </div>
           </article>
@@ -114,9 +143,9 @@ edit at 20/11/2020" />
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://haifengchengguang.github.io/post/hello-gridea/">
+            <a href="https://haifengchengguang.github.io/post/c-pta/">
               <h3 class="post-title">
-                Hello Gridea
+                c++ pta
               </h3>
             </a>
           </div>
