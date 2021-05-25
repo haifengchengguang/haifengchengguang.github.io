@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://haifengchengguang.github.io</id>
     <title>oceanwave</title>
-    <updated>2021-05-18T11:33:04.274Z</updated>
+    <updated>2021-05-25T09:59:39.357Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://haifengchengguang.github.io"/>
     <link rel="self" href="https://haifengchengguang.github.io/atom.xml"/>
@@ -281,6 +281,660 @@ int main()
 	
 }
 
+</code></pre>
+<p>7-7 车辆选择（继承） (10 分)<br>
+有一个汽车类vehicle，它具有一个需传递参数的构造函数，汽车类vehicle中的数据成员为： 车轮个数wheels和车重weight放在保护段中，汽车类vehicle中的公有成员函数为：get_wheels()（返回车轮个数的值）、get_weight()（返回车重的值）、wheel_load()（返回每个轮胎的载重量的值：weight/wheels）、print()（输出车轮的个数和车重的公斤数）；</p>
+<p>小车类car是vehicle类的派生类，它具有一个需传递参数的构造函数，小车类car中的私有数据成员为：车载人数passenger_load，小车类car中的公有成员函数为：get_passengers()（返回车载人数的值）、print()（输出小车车轮的个数和车重的公斤数以及车载人数的个数）；</p>
+<p>卡车类truck是vehicle类的派生类，它具有一个需传递参数的构造函数，卡车类truck中的私有数据成员为：载人数passenger_load和载重量payload，卡车类truck中的公有成员函数为：get_passengers()（返回车载人数的值）、efficiency（）(返回卡车的载重效率的值：payload/(payload+weight)、print()（输出卡车车轮的个数和车重的公斤数以及车载人数的个数和卡车的载重效率的值）)。</p>
+<p>生成上述类并编写主函数，根据输入的车辆基本信息，建立车辆对象，并能计算输出该车辆的基本信息。 输入格式：测试输入包含一个测试用例，每一行给出一个车辆的基本信息，每行的第一个字符处为当前车辆的类型，第二个数字为当前车辆的编号，若车辆为vehicle，后面跟随两个数字分别为wheels和weight，若车辆为car，后面跟随三个数字分别为wheels，weight和车载人数，若车辆为truck，后面跟随四个数字分别是wheels，weight、车载人数和载重量。（以上数字均为整型）。-1表示输入结束，相应结果不要输出。请注意输出格式，按照输入顺序进行编号 说明：本题中轮胎载重量、载重效率若需输出保留小数点后两位。</p>
+<p>输入样例：</p>
+<p>vehicle 101 4 1900</p>
+<p>car 201 4 2000 5</p>
+<p>truck 301 6 3000 2 9000</p>
+<p>car 202 4 1800 4</p>
+<p>-1</p>
+<p>输出样例：</p>
+<p>The 1st object is Vehicle No. 101: weight 1900 Kg and wheels 4</p>
+<p>The 2nd object is Car No. 201: passenger_load 5 weight 2000 Kg and wheels 4</p>
+<p>The 3rd object is Truck No. 301: passenger_load 2 weight 3000 Kg wheels 6 and efficiency 0.75</p>
+<p>The 4th object is Car No. 202: passenger_load 4 weight 1800 Kg and wheels 4</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+class vehicle
+{
+public:
+	vehicle(int whee,int weig):wheels(whee),weight(weig){}
+	int get_wheels() { return wheels; }
+	int get_weight() { return weight; }
+	int wheel_load() { return weight / wheels; }
+	virtual void print() { printf(&quot;weight %d Kg and wheels %d&quot;, weight, wheels); }
+protected:
+	int wheels;
+	int weight;
+};
+
+class car:vehicle
+{
+public:
+	car(int pass,int whee,int weig):vehicle(whee,weig)
+	{
+		passenger_load = pass;
+	}
+	int get_passengers() { return passenger_load; }
+	void print() { printf(&quot;passenger_load %d weight %d Kg and wheels %d&quot;, passenger_load, weight, wheels); }
+private:
+	int passenger_load;
+};
+
+class truck:vehicle
+{
+public:
+	truck(int pay,int pass, int whee, int weig):vehicle(whee,weig)
+	{
+		passenger_load = pass;
+		payload = pay;
+	}
+	int get_passengers() { return passenger_load; }
+	double efficiency() {
+		return (double) payload / (payload + weight);
+	}
+	void print() { printf(&quot;passenger_load %d weight %d Kg wheels %d and efficiency %0.2f&quot;, passenger_load, weight, wheels, efficiency()); }
+private:
+	int passenger_load;
+	int payload;
+};
+const char* ordinal_suffix(int n)
+{
+	static const char suffixes[][3] = { &quot;th&quot;, &quot;st&quot;, &quot;nd&quot;, &quot;rd&quot; };
+	auto ord = n % 100;
+	if (ord / 10 == 1) { ord = 0; }
+	ord = ord % 10;
+	if (ord &gt; 3) { ord = 0; }
+	return suffixes[ord];
+}
+int main()
+{
+	int count1 = 0;
+	while (true)
+	{
+		count1++;
+		string a;
+		cin &gt;&gt; a;
+		int number, whel, weg;
+		if (a == &quot;vehicle&quot;)
+		{
+			cin &gt;&gt; number &gt;&gt; whel &gt;&gt; weg;
+			vehicle vehicle1(whel, weg);
+			//printf(&quot;The %dst object is %s No. %d: &quot;,count1,a,b);
+			cout &lt;&lt; &quot;The &quot; &lt;&lt; count1 &lt;&lt;ordinal_suffix(count1)&lt;&lt; &quot; object is Vehicle No. &quot; &lt;&lt; number &lt;&lt; &quot;: &quot;;
+			vehicle1.print();
+			cout &lt;&lt; endl;
+			
+		}
+		else if (a == &quot;car&quot;)
+		{
+			int passager;
+			cin &gt;&gt; number &gt;&gt; whel &gt;&gt; weg &gt;&gt; passager;
+			car car1(passager, whel, weg);
+			//printf(&quot;The %dst object is Vehicle No. %d: &quot;, count1, b);
+			cout &lt;&lt; &quot;The &quot; &lt;&lt; count1 &lt;&lt; ordinal_suffix(count1) &lt;&lt; &quot; object is Car No. &quot; &lt;&lt; number &lt;&lt; &quot;: &quot;;
+			car1.print();
+			cout &lt;&lt; endl;
+			
+		}
+		else if (a == &quot;truck&quot;)
+		{
+			int passager, payee;
+			cin &gt;&gt; number &gt;&gt; whel &gt;&gt; weg &gt;&gt; passager &gt;&gt; payee;
+			truck truck1(payee, passager, whel, weg);
+			cout &lt;&lt; &quot;The &quot; &lt;&lt; count1 &lt;&lt; ordinal_suffix(count1) &lt;&lt; &quot; object is Truck No. &quot; &lt;&lt; number &lt;&lt; &quot;: &quot;;
+			truck1.print();
+			cout &lt;&lt; endl;
+			
+		}
+		else if (a == &quot;-1&quot;)
+		{
+			exit(0);
+		}
+	}
+}
+</code></pre>
+<p>7-8 多边形周长计算（继承） (10 分)<br>
+给出下面的多边形基类框架：</p>
+<p>class polygon</p>
+<p>{ protected:</p>
+<p>int number;//边数，最多不超过100条边<br>
+private:</p>
+<p>int side_length[100];//边长数组<br>
+public:</p>
+<p>polygon();//构造函数根据需要重载<br>
+int perimeter();//计算多边形边长<br>
+void display();//输出多边形边数和周长<br>
+}</p>
+<p>建立一个派生类rectangle(矩形)，增加以下数据成员：</p>
+<p>int height;<br>
+int width;<br>
+增加以下成员函数：</p>
+<p>rectangle类的无参和参数化构造函数<br>
+int perimeter();//计算矩形边长<br>
+void display();//输出多边形边数和周长<br>
+建立一个派生类equal_polygon(等边多边形)，增加以下数据成员：</p>
+<p>int side_len;<br>
+增加以下成员函数：</p>
+<p>equal_polygon类的无参和参数化构造函数<br>
+int perimeter();//计算等边多边形边长<br>
+void display();//输出多边形边数和周长<br>
+生成上述类并编写主函数，根据输入的多边形信息，相应建立一个多边形类对象或矩形类对象或等边多边形类对象，计算每一个多边形的周长并且输出其边数和周长。</p>
+<p>输入格式： 测试输入包含一个测试用例，该测试用例的第一行输入多边形的个数n，接下来n行每一行给出一个多边形的基本信息，每行的第一个数字为当前多边形的类型，0为一般多边形，后面跟随m个数字为m条边的边长，-1为一般多边形边长输入结束标志，1为矩形，后面跟随两个数字，分别为height和width，2为等边多边形，后面跟随两个数字为等边多边形的边数和边长。</p>
+<p>输入样例：</p>
+<p>3</p>
+<p>0 32 54 76 88 24 -1</p>
+<p>1 32 54</p>
+<p>2 3 32</p>
+<p>输出样例：</p>
+<p>5 274</p>
+<p>4 172</p>
+<p>3 96</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+class polygon
+
+{
+protected:
+
+	int number;//边数，最多不超过100条边
+private:
+
+	int side_length[100];//边长数组
+public:
+	polygon() { }
+	polygon(int num) :number(num) {}//构造函数根据需要重载
+	void setside(int i,int element)
+	{
+		side_length[i] = element;
+	}
+	virtual int perimeter()
+	{
+		int perime = 0;
+		for(int i=0;i&lt;number;i++)
+		{
+			perime += side_length[i];
+		}
+		return perime;
+	}//计算多边形边长
+	virtual void display()
+	{
+		cout &lt;&lt; number &lt;&lt; &quot; &quot; &lt;&lt; perimeter() &lt;&lt; endl;
+	}//输出多边形边数和周长
+};
+
+class rectangle:polygon
+{
+public:
+	rectangle() {}//类的无参和参数化构造函数
+	rectangle(int hei,int wid):height(hei),width(wid){}
+	int perimeter() { return 2 * height + 2 * width; }//计算矩形边长
+	void display() { cout &lt;&lt; &quot;4&quot; &lt;&lt; &quot; &quot; &lt;&lt; perimeter() &lt;&lt; endl; }//输出多边形边数和周长
+private:
+	int height;
+	int width;
+};
+
+class equal_polygon:polygon
+{
+public:
+	equal_polygon(){}
+	equal_polygon(int num, int side) :polygon(num) { side_len = side; }
+	int perimeter() { return number * side_len; }//计算等边多边形边长
+	void display() { cout &lt;&lt; number &lt;&lt; &quot; &quot; &lt;&lt; perimeter() &lt;&lt; endl; }//输出多边形边数和周长
+private:
+	int side_len;
+};
+int main()
+{
+	int n;
+	cin &gt;&gt; n;
+	for(int i=0;i&lt;n;i++)
+	{
+		int kind;
+		cin &gt;&gt; kind;
+		if(kind==0)
+		{
+			vector&lt;int&gt; v;
+			while (true)
+			{
+				int j;
+				cin &gt;&gt; j;
+				if(j!=-1)
+				v.push_back(j);
+				else break;
+				
+			}
+			polygon polygon1(v.size());
+			for (int k = 0; k &lt; v.size(); k++)
+				polygon1.setside(k, v.at(k));
+			polygon1.display();
+		}
+		else if(kind==1)
+		{
+			int a, b;
+			cin &gt;&gt; a &gt;&gt; b;
+			rectangle rectangle1(a, b);
+			rectangle1.display();
+		}
+		else if(kind==2)
+		{
+			int num1, lenth;
+			cin &gt;&gt; num1 &gt;&gt; lenth;
+			equal_polygon equal_polygon1(num1, lenth);
+			equal_polygon1.display();
+		}
+	}
+}
+</code></pre>
+<p>7-9 日程安排（多重继承+重载） (10 分)<br>
+已有一个日期类Date，包括三个protected成员数据</p>
+<p>int year;</p>
+<p>int month;</p>
+<p>int day;</p>
+<p>另有一个时间类Time，包括三个protected成员数据</p>
+<p>int hour;</p>
+<p>int minute;</p>
+<p>int second;</p>
+<p>现需根据输入的日程的日期时间，安排前后顺序，为此以Date类和Time类为基类，建立一个日程类Schedule，包括以下新增成员：</p>
+<p>int ID；//日程的ID</p>
+<p>bool operator &lt; (const Schedule &amp; s2);//判断当前日程时间是否早于s2</p>
+<p>生成以上类，并编写主函数，根据输入的各项日程信息，建立日程对象，找出需要最早安排的日程，并输出该日程对象的信息。</p>
+<p>输入格式： 测试输入包含若干日程，每个日程占一行（日程编号ID 日程日期（<strong>//）日程时间（:</strong>😗*））。当读入0时输入结束，相应的结果不要输出。</p>
+<p>输入样例：</p>
+<p>1 2014/06/27 08:00:01</p>
+<p>2 2014/06/28 08:00:01</p>
+<p>0</p>
+<p>输出样例：</p>
+<p>The urgent schedule is No.1: 2014/6/27 8:0:1</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+class Date
+{
+public:
+	int toIntData() {
+		return year * 10000 + month * 100 + day;
+	}
+	void showdate() { cout &lt;&lt; &quot; &quot; &lt;&lt; year &lt;&lt; &quot;/&quot; &lt;&lt; month &lt;&lt; &quot;/&quot; &lt;&lt; day; }
+	Date(int year1,int month1,int day1):year(year1),month(month1),day(day1){}
+protected:int year;
+
+	   int month;
+
+	   int day;
+};
+
+class Time
+{
+public:
+	Time(int hour1,int minute1,int second1):hour(hour1),minute(minute1),second(second1){}
+	int toIntTime() {
+		return hour * 10000 + minute * 100 + second;
+	}
+	void showtime() { cout &lt;&lt; &quot; &quot; &lt;&lt; hour &lt;&lt; &quot;:&quot; &lt;&lt; minute &lt;&lt; &quot;:&quot; &lt;&lt; second; }
+protected:
+	int hour;
+
+	int minute;
+
+	int second;
+};
+
+class Schedule:Date,Time
+{
+public:
+	Schedule(int yea1, int mont1, int da1, int hou1, int min1, int sec1, int id1) :Date(yea1, mont1, da1), Time(hou1, min1, sec1) { ID = id1; }
+	bool operator &lt; ( Schedule&amp; s2);//判断当前日程时间是否早于s
+	void show() {
+		cout &lt;&lt; &quot;No.&quot; &lt;&lt; ID &lt;&lt; &quot;:&quot;;
+		Date::showdate();
+		Time::showtime();
+	}
+private:
+	int ID;//日程的ID
+};
+bool Schedule::operator&lt;(Schedule&amp; s2)
+{
+	if (this-&gt;toIntData() != s2.toIntData()) {
+		return toIntData() &lt; s2.toIntData();
+	}
+	else {
+		return toIntTime() &lt; s2.toIntTime();
+	}
+	
+}
+
+int main()
+{
+	int n;
+	int a, b, c, d, e, f;
+	Schedule s2(9999, 9999, 9999, 9999, 999, 999, 0);
+	while (cin &gt;&gt; n, n != 0) {
+		scanf(&quot;%d/%d/%d&quot;, &amp;a, &amp;b, &amp;c);
+		scanf(&quot;%d:%d:%d&quot;, &amp;d, &amp;e, &amp;f);
+		Schedule s1(a, b, c, d, e, f,n);
+		if (s1 &lt; s2) {
+			s2 = s1;
+		}
+	}
+	cout &lt;&lt; &quot;The urgent schedule is &quot;; s2.show();
+}
+</code></pre>
+<p>7-11 动物世界 (10 分)<br>
+补充程序 ：</p>
+<p>1、实现Mammal类的方法</p>
+<p>2、由Mammal类派生出Dog类，在Dog类中增加itsColor成员(COLOR类型)</p>
+<p>3、Dog类中增加以下方法：</p>
+<p>constructors: Dog()、Dog(int age)、Dog(int age, int weight)、Dog(int age, COLOR color)、 Dog(int age, int weight, COLOR color)、~Dog()</p>
+<p>accessors: GetColor()、SetColor()</p>
+<p>Other methods: WagTail()、BegForFood() ，并实现以上这些方法 。</p>
+<p>提示：类似Speak()、WagTail()这些动作，函数体可以是输出一句话。比如：Mammal is spaeking... , The Dog is Wagging its tail...</p>
+<p>4、补充主函数的问号部分，并运行程序，检查输出是否合理。</p>
+<p>enum COLOR{ WHITE, RED, BROWN, BLACK, KHAKI };</p>
+<p>class Mammal<br>
+{<br>
+public:<br>
+//constructors<br>
+Mammal();<br>
+Mammal(int age);<br>
+~Mammal();</p>
+<pre><code>    //accessors
+    int GetAge() const;
+    void SetAge(int);
+    int GetWeight() const;
+    void SetWeight(int);
+
+    //Other methods    
+    void Speak() const;
+    void Sleep() const;        
+protected:
+    int itsAge;
+    int itsWeight;
+</code></pre>
+<p>};</p>
+<p>int main()<br>
+{<br>
+Dog Fido;<br>
+Dog Rover(5);<br>
+Dog Buster(6, 8);<br>
+Dog Yorkie(3, RED);<br>
+Dog Dobbie(4, 20, KHAKI);<br>
+Fido.Speak();<br>
+Rover.WagTail();<br>
+cout &lt;&lt; &quot;Yorkie is &quot; &lt;&lt; ?? &lt;&lt; &quot; years old.&quot; &lt;&lt; endl;<br>
+cout &lt;&lt; &quot;Dobbie    weighs &quot; &lt;&lt; ?? &lt;&lt; &quot; pounds.&quot; &lt;&lt; endl;<br>
+return 0;<br>
+}<br>
+输入格式:<br>
+无</p>
+<p>输出格式:<br>
+按照程序格式输出。</p>
+<p>输入样例:<br>
+在这里给出一组输入。例如：</p>
+<p>无<br>
+输出样例:<br>
+在这里给出相应的输出。例如：</p>
+<p>Mammal is speaking...<br>
+The dog is wagging its tail...<br>
+Yorkie is 3 years old.<br>
+Dobbie weighs 20 pounds.</p>
+<pre><code class="language-c++">enum COLOR{ WHITE, RED, BROWN, BLACK, KHAKI };
+#include&lt;iostream&gt;
+using namespace std;
+class Mammal
+{
+	public:
+		//constructors
+		Mammal()
+		{
+			itsAge=0;
+			itsWeight=0;
+		}
+		;
+		Mammal(int age)
+		{
+			itsAge=age;
+		}
+		Mammal(int age,int weight)
+		{
+			itsAge=age;
+			itsWeight=weight;
+		}
+		
+		//accessors
+		int GetAge()const
+		{
+			return itsAge;
+		}
+	int GetWeight()const
+	{
+		return itsWeight;
+	}
+		void SetWeight(int Weight)
+		{
+			itsWeight=Weight;
+		}
+		
+		//Other methods		
+	protected:
+		int itsAge;
+		int itsWeight;
+};
+class Dog:public Mammal
+{
+	COLOR itsColor;
+	public:
+		void Speak(){
+		cout&lt;&lt;&quot;Mammal is speaking...&quot;&lt;&lt;endl;
+}
+     void WagTail(){
+     	cout&lt;&lt;&quot;The dog is wagging its tail...&quot;&lt;&lt;endl;
+	 }
+	 Dog(){
+	 }
+	 Dog(int age):Mammal(age)
+	 {
+	 	
+	 }
+	 Dog(int age,int weight):Mammal(age,weight)
+	 {
+	 	
+	 }
+	 Dog(int age,int weight,COLOR x):Mammal(age,weight)
+	 {
+	 	itsColor=x;
+	 }
+	 
+};
+
+int main()
+{
+	Dog Fido;
+	Dog Rover(5);
+	Dog Buster(6, 8);
+	Dog Yorkie(3, RED);
+	Dog Dobbie(4, 20, KHAKI);
+	Fido.Speak();
+	Rover.WagTail();
+	cout &lt;&lt; &quot;Yorkie is &quot; &lt;&lt; Yorkie.GetAge() &lt;&lt; &quot; years old.&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Dobbie weighs &quot; &lt;&lt; Dobbie.GetWeight() &lt;&lt; &quot; pounds.&quot;;   
+	return 0;
+}
+</code></pre>
+<p>7-12 马会飞 (10 分)<br>
+已知Horse类是Pegasus类的父类，根据以下主函数完善程序内容，以实现规定的输出。不允许改变主函数的内容。</p>
+<p>int main()<br>
+{<br>
+Horse *p1 = new Horse; //输出：Horse 申请了空间...<br>
+Horse <em>p2 = new Pegasus; /</em>  输出两行：<br>
+Horse 申请了空间...<br>
+Pegasus 申请了空间...<br>
+*/<br>
+cout &lt;&lt; endl;</p>
+<pre><code>p1-&gt;Fly(); //输出：Just a horse.
+p2-&gt;Fly(); //输出：I can fly!
+cout &lt;&lt; endl; 
+
+delete p1; //输出：Horse 释放了空间...
+delete p2;  /* 输出两行：
+               Pegasus 释放了空间... 
+               Horse 释放了空间... 
+        */
+return 0;
+</code></pre>
+<p>}<br>
+输入格式:<br>
+无</p>
+<p>输出格式:<br>
+根据样例格式输出。</p>
+<p>输入样例:<br>
+在这里给出一组输入。例如：</p>
+<p>无<br>
+输出样例:<br>
+在这里给出相应的输出。例如：</p>
+<p>Horse 申请了空间...<br>
+Horse 申请了空间...<br>
+Pegasus 申请了空间...</p>
+<p>Just a horse.<br>
+I can fly!</p>
+<p>Horse 释放了空间...<br>
+Pegasus 释放了空间...<br>
+Horse 释放了空间...</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+class Horse
+{
+public:
+	Horse()
+	{
+        cout &lt;&lt; &quot;Horse 申请了空间...&quot; &lt;&lt; endl;
+	}
+	virtual void Fly()
+	{
+        cout &lt;&lt; &quot;Just a horse.&quot; &lt;&lt; endl;
+	}
+	virtual ~Horse()
+	{
+        cout &lt;&lt; &quot;Horse 释放了空间...&quot; &lt;&lt; endl;
+	}
+};
+
+class Pegasus:public Horse
+{
+public:
+	Pegasus()
+	{
+        cout &lt;&lt; &quot;Pegasus 申请了空间...&quot; &lt;&lt; endl;
+	}
+	void Fly() override;
+	~Pegasus()
+	{
+        cout &lt;&lt; &quot;Pegasus 释放了空间...&quot; &lt;&lt; endl;
+	}
+};
+void Pegasus::Fly()
+{
+    cout &lt;&lt; &quot;I can fly!&quot; &lt;&lt; endl;
+}
+
+int main()
+{
+    Horse* p1 = new Horse; //输出：Horse 申请了空间...
+    Horse* p2 = new Pegasus; /*  输出两行：
+                                 Horse 申请了空间...
+                                 Pegasus 申请了空间...
+                     */
+    cout &lt;&lt; endl;
+
+    p1-&gt;Fly(); //输出：Just a horse.
+    p2-&gt;Fly(); //输出：I can fly!
+    cout &lt;&lt; endl;
+
+    delete p1; //输出：Horse 释放了空间...
+    delete p2;  /* 输出两行：
+                   Pegasus 释放了空间...
+                   Horse 释放了空间...
+            */
+    return 0;
+}
+</code></pre>
+<p>7-14 A是A1的虚基类 (10 分)<br>
+本题目要求读入3个整数A、B和C，然后按照下列要求完成相关设计：1.定义一个基类A，在其中包含保护的数据成员int i，设计类A的带参构造函数对i进行初始化，定义成员函数display（）显示i值； 2.定义基类A的公有派生类A1，且A是A1的虚基类；A1中包含保护的数据成员int j，设计类A1的构造函数； 3.定义基类A的公有派生类A2，且A是A2的虚基类；A2中包含保护的数据成员int k，设计类A2的构造函数； 4.定义类A3，A3是A1和A2以多继承方式生成的公有派生类，设计类A3的构造函数；定义成员函数disp（）在其中调用display（）函数显示i值，另外输出j和k值； 5.在main（）中定义类A3的1个对象变量，通过输入的3个整数完成对象的创建；调用类A3的成员函数disp（）输出信息。</p>
+<p>输入格式:<br>
+输入在一行中给出3个绝对值不超过1000的整数A、B和C。</p>
+<p>输出格式:<br>
+按行输出每个类中的构造函数中的信息和在主函数中调用的对象的成员函数。</p>
+<p>输入样例:<br>
+在这里给出一组输入。例如：</p>
+<p>1 2 3<br>
+输出样例:<br>
+在这里给出相应的输出。例如：</p>
+<p>Call A:i=1<br>
+Call A1:i=1<br>
+Call A2:i=1<br>
+Call A3:i=1<br>
+i=1<br>
+j=2<br>
+k=3</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+class A
+{
+public:
+	A(int i1) :i(i1) { cout &lt;&lt; &quot;Call A:i=&quot; &lt;&lt; i &lt;&lt; endl; }
+	void display()
+	{
+		cout &lt;&lt; i &lt;&lt; endl;
+	}
+protected:
+	int i;
+};
+
+class A1:virtual public A
+{
+public:
+	A1(int i1,int j) :A(i1),j(j){ cout &lt;&lt; &quot;Call A1:i=&quot; &lt;&lt; i &lt;&lt; endl; }
+protected:
+	int j;
+};
+
+class A2:virtual public A
+{
+public:
+	A2(int i1,int k1):A(i1),k(k1){ cout &lt;&lt; &quot;Call A2:i=&quot; &lt;&lt; i &lt;&lt; endl; }
+protected:
+	int k;
+};
+
+class A3:public A1,public A2
+{
+public:
+	A3(int i1,int j1,int k1):A2(i1,k1),A1(i1,j1),A(i1){ cout &lt;&lt; &quot;Call A3:i=&quot; &lt;&lt; i &lt;&lt; endl; }
+	void display()
+	{
+		cout&lt;&lt;&quot;i=&quot; &lt;&lt; i &lt;&lt; endl;
+		cout&lt;&lt;&quot;j=&quot; &lt;&lt; j &lt;&lt; endl;
+		cout&lt;&lt;&quot;k=&quot; &lt;&lt; k &lt;&lt; endl;
+
+	}
+};
+int main()
+{
+	int a, b, c;
+	cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+	A3 a3(a, b, c);
+	a3.display();
+}
 </code></pre>
 ]]></content>
     </entry>
