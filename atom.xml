@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://haifengchengguang.github.io</id>
     <title>oceanwave</title>
-    <updated>2021-06-02T11:09:29.017Z</updated>
+    <updated>2021-06-02T11:11:16.209Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://haifengchengguang.github.io"/>
     <link rel="self" href="https://haifengchengguang.github.io/atom.xml"/>
@@ -18,10 +18,14 @@
         </link>
         <updated>2021-06-02T11:03:26.000Z</updated>
         <content type="html"><![CDATA[<p align="right">edit at 2/6/2021</p>
-### 爱
->如果爱只是一种感觉。那么当爱遇到挑战，这种感觉很快就会消除。因为我们很容易在不同的人身上获得这种感觉，所以移情别恋最经常的说辞就是我没有感觉了。但真正的爱并非一种感觉，它更多的是一种责任，是一种彼此的牺牲和彼此的成就。真正的爱移动不是瞬间的感动，而必然是恒久的一种委身。彼此牺牲，彼此成就，彼此尊重。
-### 天生犯罪人
->我们每个人内心都有幽暗的成分，遇到合适的环境这些幽暗可能会被释放，所以我们永远要对自己的内心的幽暗保持警惕，所以在这个意义上我们似乎都是天生犯罪人，所以我们要远离那些会激发我们幽暗的环境，但无论如何我们都要为我们的选择付出代价。
+<h3 id="爱">爱</h3>
+<blockquote>
+<p>如果爱只是一种感觉。那么当爱遇到挑战，这种感觉很快就会消除。因为我们很容易在不同的人身上获得这种感觉，所以移情别恋最经常的说辞就是我没有感觉了。但真正的爱并非一种感觉，它更多的是一种责任，是一种彼此的牺牲和彼此的成就。真正的爱移动不是瞬间的感动，而必然是恒久的一种委身。彼此牺牲，彼此成就，彼此尊重。</p>
+</blockquote>
+<h3 id="天生犯罪人">天生犯罪人</h3>
+<blockquote>
+<p>我们每个人内心都有幽暗的成分，遇到合适的环境这些幽暗可能会被释放，所以我们永远要对自己的内心的幽暗保持警惕，所以在这个意义上我们似乎都是天生犯罪人，所以我们要远离那些会激发我们幽暗的环境，但无论如何我们都要为我们的选择付出代价。</p>
+</blockquote>
 ]]></content>
     </entry>
     <entry>
