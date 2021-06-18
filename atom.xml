@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://haifengchengguang.github.io</id>
     <title>oceanwave</title>
-    <updated>2021-06-05T11:18:54.077Z</updated>
+    <updated>2021-06-18T11:34:47.165Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://haifengchengguang.github.io"/>
     <link rel="self" href="https://haifengchengguang.github.io/atom.xml"/>
@@ -11,6 +11,84 @@
     <logo>https://haifengchengguang.github.io/images/avatar.png</logo>
     <icon>https://haifengchengguang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, oceanwave</rights>
+    <entry>
+        <title type="html"><![CDATA[山东大学软件学院华为RDS for MySQL数据库实验]]></title>
+        <id>https://haifengchengguang.github.io/post/shan-dong-da-xue-ruan-jian-xue-yuan-hua-wei-rds-for-mysql-shu-ju-ku-shi-yan/</id>
+        <link href="https://haifengchengguang.github.io/post/shan-dong-da-xue-ruan-jian-xue-yuan-hua-wei-rds-for-mysql-shu-ju-ku-shi-yan/">
+        </link>
+        <updated>2021-06-11T07:11:43.000Z</updated>
+        <content type="html"><![CDATA[<p align="right">edit at 11/6/2021</p>
+<p>基于华为 RDS for MySQL 数据库 实验指导书</p>
+<h1 id="第一部分实验要求">第一部分：实验要求</h1>
+<h2 id="一-关于索引的思考">一、关于索引的思考</h2>
+<p>请思考以下 SQL 是否需要索引以及如何建立索引以及如何建立索引。给出不建立索引、建立不同索引时 SQL 的执行时间。<br>
+下列查询最慢的需要2秒，感觉这速度可以了hhh，不用建索引了</p>
+<p>1、	查询学号为“200900140169”的学生选修的所有课程名称和考试成绩。</p>
+<pre><code class="language-sql">select a.sid,a.cid,a.score,b.cname from `student_course` AS a,`course` AS b  WHERE a.sid='200900140169' and a.cid=b.cid
+</code></pre>
+<p>9ms</p>
+<p>2、	查询“软件学院”学生的姓名。</p>
+<pre><code class="language-sql">select dno from department where dname='软件学院'
+</code></pre>
+<p>10ms<br>
+dno='d10'</p>
+<pre><code class="language-sql">select name from student where dno='d10'
+</code></pre>
+<p>11ms</p>
+<p>3、	查询“软件学院”的学生学号和选修课程的编号。</p>
+<pre><code class="language-sql">select sid,cid from student_course where sid in SELECT sid FROM student WHERE dno='d10'
+</code></pre>
+<p>11ms</p>
+<p>4、	查询学生姓名、所选课程和考试成绩。（仅包含选课的学生）</p>
+<pre><code class="language-sql">select sid,cid,score from student_course 
+</code></pre>
+<p>10ms</p>
+<pre><code class="language-sql">select sid,student_course.cid,cname,score from student_course,course where student_course.cid =course.cid
+</code></pre>
+<p>23ms</p>
+<p>5、	查询学生姓名、所选课程和考试成绩。（包含所有的学生）</p>
+<pre><code class="language-sql">SELECT student.sid,cid,score 
+FROM student
+	LEFT JOIN student_course ON student.sid = student_course.sid 
+</code></pre>
+<p>9ms</p>
+<pre><code class="language-sql">SELECT sid,a.cid,cname,score FROM 
+(SELECT student.sid as sid,cid,score 
+FROM student
+	LEFT JOIN student_course ON student.sid = student_course.sid) as a
+,course WHERE a.cid=course.cid
+</code></pre>
+<p>9ms</p>
+<p>6、	查询每门课(仅限于被学生选修的课程)的课程名称、平均成绩、最高成绩、 最低成绩和选修学生人数。</p>
+<pre><code class="language-sql">SELECT cname, avg(score), max(score)
+	, MIN(score), COUNT(sid)
+FROM course, student_course
+WHERE course.cid = student_course.cid
+GROUP BY student_course.cid
+</code></pre>
+<p>1953ms 这个需要建索引</p>
+<p>7、	查询每门课(包括没有学生选修的课程)的课程名称、平均成绩、最高成绩、 最低成绩和选修学生人数。</p>
+<pre><code class="language-sql">SELECT cname, avg(score), max(score)
+	, MIN(score), COUNT(sid)
+FROM (select student.sid as sid,cid,score FROM student LEFT JOIN student_course ON student.sid=student_course.sid) as a,course 
+WHERE course.cid = a.cid
+GROUP BY course.cid 
+</code></pre>
+<p>2052 ms 需要建索引</p>
+<p>8、	查询选课学生的平均学时和平均学分。</p>
+<pre><code class="language-sql">SELECT AVG(sumperiod),avg(sumcredit) from (select sid,sum(period) as sumperiod,sum(credit) as sumcredit from student_course,course WHERE student_course.cid =course.cid GROUP BY sid) as a 
+</code></pre>
+<p>1392 ms 需要建索引</p>
+<p>9、	查询全体学生的平均选课数量（包括未选课的学生）。</p>
+<pre><code class="language-sql">SELECT AVG(countcid) FROM (SELECT student.sid,COUNT(cid) as countcid FROM student LEFT JOIN student_course on student.sid=student_course.sid GROUP BY sid) as a 
+</code></pre>
+<p>238 ms</p>
+<h2 id="二-请撰写华为rds-for-mysql-数据库与oracle-数据库在-使用方面的对比体会">二、请撰写华为RDS for MySQL 数据库与Oracle 数据库在 使用方面的对比体会。</h2>
+<p>1、Mysql更名运算需要加as，Oracle不能加<br>
+2、mysql要求每一个派生出来的表都必须有一个自己的别名，用as给派生表加上别名即可；<br>
+<img src="https://haifengchengguang.github.io/post-images/1623395594033.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[罗翔语录]]></title>
         <id>https://haifengchengguang.github.io/post/luo-xiang-yu-lu/</id>
@@ -25,6 +103,23 @@
 <h3 id="天生犯罪人">天生犯罪人</h3>
 <blockquote>
 <p>我们每个人内心都有幽暗的成分，遇到合适的环境这些幽暗可能会被释放，所以我们永远要对自己的内心的幽暗保持警惕，所以在这个意义上我们似乎都是天生犯罪人，所以我们要远离那些会激发我们幽暗的环境，但无论如何我们都要为我们的选择付出代价。</p>
+</blockquote>
+<h3 id="克隆人">克隆人</h3>
+<blockquote>
+<p>毁灭人类的七种东西：<br>
+没有原则的政治<br>
+没有辛劳的财富<br>
+没有人格的学识<br>
+没有人性的科学<br>
+没有道德的商业<br>
+没有良知的享乐<br>
+没有牺牲的敬拜<br>
+——甘地<br>
+没有人性的科学，科学没有道德的限制，人类终将会毁灭</p>
+</blockquote>
+<h3 id="吐槽大会">吐槽大会</h3>
+<blockquote>
+<p>很多人沉迷于寻找独立的意义和价值，渴望和人类伟大的传承相隔绝，于是幻想着进入一个黄金时代，结果却掉进了一个粪坑。</p>
 </blockquote>
 ]]></content>
     </entry>
