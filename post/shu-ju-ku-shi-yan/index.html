@@ -1,0 +1,407 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>数据库实验 | hrefen</title>
+<link rel="shortcut icon" href="https://haifengchengguang.github.io/favicon.ico?v=1678091929164">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://haifengchengguang.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="数据库实验 | hrefen - Atom Feed" href="https://haifengchengguang.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-183666884-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-183666884-1');
+</script>
+
+
+    <meta name="description" content="edit at 25/5/2021
+数据库实验四
+实验四 复制表、修改表结构、修改数据
+一、 实验内容
+利用 oracle 管理平台完成对表的结构、数据进行修改，每一个问题可以通过多个 SQL 语句完成。
+二、 实验题目
+1．将 pub 用..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://haifengchengguang.github.io">
+  <img class="avatar" src="https://haifengchengguang.github.io/images/avatar.png?v=1678091929164" alt="">
+  </a>
+  <h1 class="site-title">
+    hrefen
+  </h1>
+  <p class="site-description">
+    我很弱，但是我要坚强！绝不让那些为我付出过的人失望！
+
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              数据库实验
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-05-25
+              </span>
+              <span>
+                11 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p align="right">edit at 25/5/2021</p>
+<h2 id="数据库实验四">数据库实验四</h2>
+<p>实验四 复制表、修改表结构、修改数据</p>
+<p>一、 实验内容</p>
+<p>利用 oracle 管理平台完成对表的结构、数据进行修改，每一个问题可以通过多个 SQL 语句完成。<br>
+二、 实验题目<br>
+1．将 pub 用户下表 student_41 及数据复制到主用户的表 test4_01 中，使用 alter table 语句为表增加列： “总成绩:sum_score”。 使用 update 语句,利用 pub.student_course，统计 “总成绩”；<br>
+2．将 pub 用户下表 student_41 及数据复制到主用户的表 test4_02 中，使用 alter table 语句为表增加列 “平均成绩:avg_score” （小数点后保留 1 位）。 利用 pub.student_course，统计“平均成绩”，四舍五入到小数点后 1 位<br>
+3．将 pub 用户下表 student_41 及数据复制到主用户的表 test4_03 中，使用 alter table 语句为表增加列： “总学分:sum_credit”。 使用 update 语句,利用 pub.student_course、pub.course，统计 “总学分”； 这是需要注意：成绩及格才能够计算所得学分,一门课多个成绩都及格只计一次学分。<br>
+4．将 pub 用户下表 student_41 及数据复制到主用户的表 test4_04 中。 根据列院系名称 dname 到 pub.department 找到对应院系编号 did，将对应的院系编号回填到院系名称列 dname 中，如果表中没有对应的院系名称，则列 dname 中内容不变仍然是原来的内容。<br>
+5．将 pub 用户下表 student_41 及数据复制到主用户的表 test4_05 中，使用 alter table 语句为表增加 4 个列：“总成绩:sum_score”、 “平均成绩:avg_score”、“总学分:sum_credit”、“院系编号:did varchar(2) ”。 （1） 利用 pub.student_course、pub.course，统计 “总成绩”； （2） 利用 pub.student_course、pub.course，统计“平均成绩”，四舍五入到小数点后 1 位； （3） 利用 pub.student_course、pub.course，统计 “总学分”； （4） 根据院系名称到 pub.department 或者 pub.department_41 中，找到对应编号，填写到院系编号 中，如果都没有对应的院系，则填写为 00。<br>
+说明：执行 update 后，在查询表中数据，可能出现顺序变化，这是正常，因为数据在表中是无序。需要 顺序的时候可以通过 orderby 实现。<br>
+6．将 pub 用户下的 Student_42 及数据复制到主用户的表 test4_06 中,对表中的数据进行整理，修复那些 不规范的数据： 剔除姓名列中的所有空格；<br>
+第 18 页 共 34 页7．将 pub 用户下的 Student_42 及数据复制到主用户的表 test4_07 中,对表中的数据进行整理，修复那些 不规范的数据： 对性别列进行规范（需要先确定哪些性别数据不规范，也就是那些和大多数不一样的就是不规范的）；<br>
+8．将 pub 用户下的 Student_42 及数据复制到主用户的表 test4_08 中,对表中的数据进行整理，修复那些 不规范的数据： 对班级列进行规范（需要先确定哪些班级不规范）。<br>
+9．将 pub 用户下的 Student_42 及数据复制到主用户的表 test4_09 中,对表中的数据进行整理，修复那些 不规范的数据： 年龄为空值的根据出生日期设置学生年龄（截止到 2012 年的年龄，即年龄=2012-出生年份），年龄不 为空值的不要改变。<br>
+10． 将 pub 用户下的 Student_42 及数据复制到主用户的表 test4_10 中,对表中的数据进行整理，修复那些 不规范的数据： （1） 剔除姓名列中的所有空格； （2） 剔除院系名称列中的所有空格； （3） 对性别列进行规范（需要先确定哪些性别数据不规范，也就是那些和大多数不一样的就是不规范 的）；<br>
+（4） 对班级列进行规范（需要先确定哪些班级不规范）。 （5） 年龄为空值的根据出生日期设置学生年龄（截止到 2012 年的年龄，即年龄=2012-出生年份）， 年龄不为空值的不要改变。</p>
+<p>4-1</p>
+<pre><code class="language-sql">update test4_01 set sum_score=(select sum(score) from pub.student_course a where a.sid=test4_01.sid)
+</code></pre>
+<p>4-2</p>
+<pre><code class="language-sql">update test4_02 set avg_score=
+(select ROUND(avg(score),1) from pub.student_course a where test4_02.sid=a.sid)
+</code></pre>
+<p>4-3</p>
+<pre><code class="language-sql">update test4_03 set sum_credit=(select sum(credit)
+from ((select sid,cid,max(score) score from pub.student_course group by sid,cid) natural join pub.course) where test4_03.sid=sid and score&gt;=60)
+</code></pre>
+<p>4-4</p>
+<pre><code class="language-sql">update test4_04 set dname= (select a.did from pub.department a where test4_04.dname=a.dname) where exists (select a.did from pub.department a where test4_04.dname=a.dname)
+</code></pre>
+<p>4-5</p>
+<pre><code class="language-sql">create table test4_05 as select * from pub.student_41
+alter table test4_05 add (sum_score int,avg_score BINARY_DOUBLE,sum_credit int,did varchar(2))
+update test4_05 set sum_score=(select sum(score) from pub.student_course a where a.sid=test4_05.sid)
+update test4_05 set avg_score=
+(select ROUND(avg(score),1) from pub.student_course a where test4_05.sid=a.sid)
+update test4_05 set sum_credit=(select sum(credit)
+from ((select sid,cid,max(score) score from pub.student_course group by sid,cid) natural join pub.course) where test4_05.sid=sid and score&gt;=60)
+update test4_05 set did=(select did from pub.DEPARTMENT
+where pub.DEPARTMENT.DNAME=test4_05.dname)
+update test4_05 set did=(select did from pub.DEPARTMENT_41 where pub.DEPARTMENT_41.DNAME=test4_05.dname)where dname in(select dname from pub.DEPARTMENT_41)
+update test4_05 set did='00'where did is null
+</code></pre>
+<p>4-6</p>
+<pre><code class="language-sql">update test4_06 set name=translate(name,'/ ','/')
+</code></pre>
+<p>4-7</p>
+<pre><code class="language-sql">update test4_07 set sex=translate(sex,'/ ','/')
+update test4_07 set sex=translate(sex,'/性','/')
+</code></pre>
+<p>4-8</p>
+<pre><code class="language-sql">update test4_08 set class=translate(class,'/级','/')
+</code></pre>
+<p>4-9</p>
+<pre><code class="language-sql">update 
+</code></pre>
+<p>5-3</p>
+<pre><code class="language-sql">create table test5_03 as select dname,class,count(sid) p_count from pub.student where dname is not null group by dname,class
+</code></pre>
+<pre><code class="language-sql">alter table test5_03 add (p_count1 int,p_count2 int)
+</code></pre>
+<pre><code class="language-sql">update test5_03 t set p_count1 = 
+(select count(sid)
+from (
+	select S.sid,S.dname,S.class
+	from pub.student S,pub.course C,pub.student_course SC
+	where S.sid = SC.sid and C.cid=SC.cid and SC.score &gt;= 60
+	group by S.sid,S.dname,S.class
+	having sum(C.credit) &gt;= 10
+) temp
+where t.dname = temp.dname and t.class  = temp.class)
+</code></pre>
+<pre><code class="language-sql">update test5_03 set p_count2=p_count-p_count1
+</code></pre>
+<p>5-4</p>
+<pre><code class="language-sql">update test5_04 t set p_count1 =case
+    when t.class&gt;2008 then
+(select count(sid)
+from (
+	select S.sid,S.dname,S.class
+	from pub.student S,pub.course C,pub.student_course SC
+	where S.sid = SC.sid and C.cid=SC.cid and SC.score &gt;= 60
+	group by S.sid,S.dname,S.class
+	having sum(C.credit) &gt;= 10
+) temp
+where t.dname = temp.dname and t.class  = temp.class)
+else
+(select count(sid)
+from (
+	select S.sid,S.dname,S.class
+	from pub.student S,pub.course C,pub.student_course SC
+	where S.sid = SC.sid and C.cid=SC.cid and SC.score &gt;= 60
+	group by S.sid,S.dname,S.class
+	having sum(C.credit) &gt;= 8
+) temp
+where t.dname = temp
+</code></pre>
+<p>5-5</p>
+<pre><code class="language-sql">
+</code></pre>
+<p>5-6</p>
+<pre><code class="language-sql">create table test5_06 as select distinct sid,name,dname
+from pub.student natural join pub.student_course
+where sid in(
+    select sid from pub.student natural join pub.student_course where cid='300002' and dname='计算机科学与技术学院'
+    intersect
+    select sid from pub.student natural join pub.student_course where cid='300005' and dname='计算机科学与技术学院'
+    )
+alter table test5_06 add (ds_score int,os_score int)
+update test5_06 t set ds_score=
+(
+    select max(score)
+    from pub.student_course
+    where cid='300002' and t.sid=sid
+    )
+update test5_06 t set os_score=
+(
+    select max(score)
+    from pub.student_course
+    where cid='300005' and t.sid=sid
+    )
+</code></pre>
+<p>5-7</p>
+<pre><code>将intersect换成union
+</code></pre>
+<p>5-8</p>
+<pre><code class="language-sql">create table test5_08 as select distinct sid,name,dname
+from pub.student
+where dname='计算机科学与技术学院'
+alter table test5_08 add (ds_score int,os_score int)
+update test5_08 t set ds_score=
+(
+    select max(score)
+    from pub.student_course
+    where cid='300002' and t.sid=sid
+    )
+update test5_08 t set os_score=
+(
+    select max(score)
+    from pub.student_course
+    where cid='300005' and t.sid=sid
+    )
+</code></pre>
+<p>7-1</p>
+<pre><code class="language-sql">create index test7_01_name on test7_01(substr(name,1,1))
+</code></pre>
+<p>7-2</p>
+<pre><code class="language-sql">create index test7_02_namebirth on test7_02(birthday,name)
+create index test7_02_namebirth on test7_02(name,birthday)//不行
+</code></pre>
+<p>7-3</p>
+<pre><code class="language-sql">select * from
+(select sid,name,birthday,
+(select count(*) from pub.student
+where substr(name,1,1)
+) samefirstname 
+from pub.student_testindex t1) where samefirstname=7
+</code></pre>
+<p>7-4</p>
+<pre><code class="language-sql">create view test7_03 as
+select * from
+(select sid,name,birthday,
+(select count(*) from pub.student
+where name like concat(substr(t1.name,1,1),'%')
+) samefirstname
+from pub.student_testindex t1) where samefirstname=7
+</code></pre>
+<p>7-5</p>
+<p>一、截取时间</p>
+<pre><code class="language-sql">select  trunc(to_date('2018-02-01 1:00:00','YYYY-MM-DD HH:MI:SS'),'yyyy') from   dual ;--返回当年第一天
+select  trunc(to_date('2018-02-01 1:00:00','YYYY-MM-DD HH:MI:SS'),'mm') from   dual ; --返回当月第一天
+select  trunc(to_date('2018-02-01 1:00:00','YYYY-MM-DD HH:MI:SS'),'dd') from   dual ;--返回当前年月
+select  trunc(to_date('2018-02-01 1:00:00','YYYY-MM-DD HH:MI:SS'),'d') from   dual ; --返回当前星期的第一天(星期日) 
+select  trunc(to_date('2018-02-01 1:12:12','YYYY-MM-DD HH:MI:SS'),'hh') from   dual ;--返回当前日期截取到小时,分秒补0
+select  trunc(to_date('2018-02-01 1:12:12','YYYY-MM-DD HH:MI:SS'),'mi') from   dual ;--返回当前日期截取到分,秒补0
+</code></pre>
+<p>————————————————</p>
+<p>比较同年同月的时候，应当为birthday&gt;=本月第一天且birthday&lt;=本月最后一天，这里本月是指t1.birthday所在月；比较同年的时候，应当为birthday&gt;=本年第一天且birthday&lt;=本年最后一天，这里本月是指t1.birthday所在年。<br>
+函数trunc(date,fmt)可以用来截取日期，例如trunc (t1.birthday,‘mm’)结果即为t1.birthday所在月的第一天的00:00:00，而trunc(t1.birthday,‘yyyy’)则获得当年1月1日00:00:00。<br>
+函数last_day(date)可以获得该日期所在月的最后一天。<br>
+函数add_months(date,plusMonth)可以实现月份相加，即返回结果为日期date加上plusMonth个月之后的日期。<br>
+于是本年最后一天可以表示为last_day(add_months(trunc(t1.birthday,‘yyyy’),11))<br>
+修改语句为：</p>
+<pre><code class="language-sql">
+</code></pre>
+<p>查看系统时间</p>
+<pre><code class="language-sql">select to_char(sysdate,'yyyy-MM-dd HH24:mi:ss') from dual;
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E9%AA%8C%E5%9B%9B">数据库实验四</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://haifengchengguang.github.io/post/mian-xiang-dui-xiang-she-ji-yuan-ze/">
+              <h3 class="post-title">
+                面向对象设计原则
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '8c2bfbf18727f466152c',
+    clientSecret: 'c5406e5093c1fc36f0a94093cd581fe5e82784a3',
+    repo: 'haifengchengguang.github.io',
+    owner: 'haifengchengguang',
+    admin: ['haifengchengguang'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+   <div>
+    <a href="https://gridea.dev/" target="_blank">Powered by Gridea&#65281;</a>
+  </div>
+  <div>
+    <strong><i>你是人间的四月天❤</i></strong>
+  <a class="rss" href="https://haifengchengguang.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

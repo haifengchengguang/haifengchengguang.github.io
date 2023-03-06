@@ -1,0 +1,449 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>面向对象编程导论学习 | hrefen</title>
+<link rel="shortcut icon" href="https://haifengchengguang.github.io/favicon.ico?v=1678091929164">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://haifengchengguang.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="面向对象编程导论学习 | hrefen - Atom Feed" href="https://haifengchengguang.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-183666884-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-183666884-1');
+</script>
+
+
+    <meta name="description" content="edit at 3/7/2021
+面向对象与uml图
+类
+根据抽象的原则对客观事物进行归纳和划分，只关注与当前目标相关的特征，把具有相同特征的事物归为一个类。它是一个抽象的概念。
+类是具有相同属性和相同操作（服务）的对象的集合。它包括属性和..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://haifengchengguang.github.io">
+  <img class="avatar" src="https://haifengchengguang.github.io/images/avatar.png?v=1678091929164" alt="">
+  </a>
+  <h1 class="site-title">
+    hrefen
+  </h1>
+  <p class="site-description">
+    我很弱，但是我要坚强！绝不让那些为我付出过的人失望！
+
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              面向对象编程导论学习
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-06-22
+              </span>
+              <span>
+                9 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p align="right">edit at 3/7/2021</p>
+<h1 id="面向对象与uml图">面向对象与uml图</h1>
+<p>类<br>
+根据抽象的原则对客观事物进行归纳和划分，只关注与当前目标相关的特征，把具有相同特征的事物归为一个类。它是一个抽象的概念。<br>
+类是具有相同属性和相同操作（服务）的对象的集合。它包括属性和操作。</p>
+<p>对象</p>
+<p>对象是独立存在的客观事物，它由一组属性和一组操作构成。<br>
+属性和操作是对象的两大要素。属性是对象静态特征的描述，操作是对象动态特征的描述。<br>
+属性一般只能通过执行对象的操作来改变。<br>
+操作又称为方法或服务，它描述了对象执行的功能。通过消息传递，还可以为其它对象使用</p>
+<p>每一个对象都是某个类的实例。类是一组相似的对象 。<br>
+类是对象相关行为的储存库(repository)。即同一个类的所有对象都能执行同样的动作。</p>
+<p>OOP定义-Alan Kay</p>
+<p>OOP是基于递归设计的原则的：<br>
+一切都是对象。<br>
+计算通过对象间相互通信，请求其他对象执行动作来实现。对象间通过发送和接收消息来通信。<br>
+每个对象都有自己的内存，其中可能包括了其他的对象。<br>
+每一个对象都是某个类的实例。类就是一组相似的对象。<br>
+类是对象相关行为的储存库。也就是说，同一个类的所有对象都能执行同样的动作。<br>
+类被组织成有单个根节点的树状结构，被称为继承层次结构。与类实例相关的内存和行为都会被树结构中的后代自动继承。</p>
+<p>对象间通信</p>
+<p>向前定义<br>
+多个互相引用的类(相互递归)<br>
+Java全文扫描。C++向前定义</p>
+<p>内部类(嵌套类)<br>
+在一个类中定义另外一个类。(Java内部类。C++嵌套类)<br>
+语义差别<br>
+Java内部类被连接到外部类的具体实例上，并且允许存取其实例和方法。C++仅是命名手段，限制和内部类相关的特征可视性。<br>
+java的非静态内部类有个外部类的引用outer，使用这个变量可以引用外部的所有变量，包括private<br>
+静态的java内部类也叫做嵌套类，静态的内部类就没有外部的引用了，但是也只能调用外部的静态方法和变量<br>
+c++的内部类几乎等同于语法上的嵌套,而C++的内部类不能访问外部类的private变量，想访问的话必须在内部类中声明外部类为friend class<br>
+Java 内部类<br>
+Java 对象和类<br>
+在章节我们将来学习 Java 的内部类。<br>
+Java 一个类中可以嵌套另外一个类，语法格式如下：<br>
+class OuterClass {   // 外部类<br>
+// ...<br>
+class NestedClass { // 嵌套类，或称为内部类<br>
+// ...<br>
+}<br>
+}<br>
+要访问内部类，可以通过创建外部类的对象，然后创建内部类的对象来实现。<br>
+嵌套类有两种类型：<br>
+•	非静态内部类<br>
+•	静态内部类<br>
+非静态内部类<br>
+非静态内部类是一个类中嵌套着另外一个类。 它有访问外部类成员的权限， 通常被称为内部类。<br>
+由于内部类嵌套在外部类中，因此必须首先实例化外部类，然后创建内部类的对象来实现。<br>
+实例<br>
+class OuterClass {<br>
+int x = 10;</p>
+<p>class InnerClass {<br>
+int y = 5;<br>
+}<br>
+}</p>
+<p>public class MyMainClass {<br>
+public static void main(String[] args) {<br>
+OuterClass myOuter = new OuterClass();<br>
+OuterClass.InnerClass myInner = myOuter.new InnerClass();<br>
+System.out.println(myInner.y + myOuter.x);<br>
+}<br>
+}<br>
+以上实例执行输出结果为：<br>
+15<br>
+私有的内部类<br>
+内部类可以使用 private 或 protected 来修饰，如果你不希望内部类被外部类访问可以使用 private 修饰符：<br>
+实例<br>
+class OuterClass {<br>
+int x = 10;</p>
+<p>private class InnerClass {<br>
+int y = 5;<br>
+}<br>
+}</p>
+<p>public class MyMainClass {<br>
+public static void main(String[] args) {<br>
+OuterClass myOuter = new OuterClass();<br>
+OuterClass.InnerClass myInner = myOuter.new InnerClass();<br>
+System.out.println(myInner.y + myOuter.x);<br>
+}<br>
+}<br>
+以上实例 InnerClass 设置为私有内部类，执行会报错：<br>
+MyMainClass.java:12: error: OuterClass.InnerClass has private access in OuterClass<br>
+OuterClass.InnerClass myInner = myOuter.new InnerClass();<br>
+^<br>
+静态内部类<br>
+静态内部类可以使用 static 关键字定义，静态内部类我们不需要创建外部类来访问，可以直接访问它：<br>
+实例<br>
+class OuterClass {<br>
+int x = 10;</p>
+<p>static class InnerClass {<br>
+int y = 5;<br>
+}<br>
+}</p>
+<p>public class MyMainClass {<br>
+public static void main(String[] args) {<br>
+OuterClass.InnerClass myInner = new OuterClass.InnerClass();<br>
+System.out.println(myInner.y);<br>
+}<br>
+}<br>
+以上实例执行输出结果为：<br>
+5<br>
+注意：静态内部类无法访问外部类的成员。<br>
+从内部类访问外部类成员<br>
+内部类一个高级的用法就是可以访问外部类的属性和方法：<br>
+实例<br>
+class OuterClass {<br>
+int x = 10;</p>
+<p>class InnerClass {<br>
+public int myInnerMethod() {<br>
+return x;<br>
+}<br>
+}<br>
+}</p>
+<p>public class MyMainClass {<br>
+public static void main(String[] args) {<br>
+OuterClass myOuter = new OuterClass();<br>
+OuterClass.InnerClass myInner = myOuter.new InnerClass();<br>
+System.out.println(myInner.myInnerMethod());<br>
+}<br>
+}<br>
+以上实例执行输出结果为：<br>
+10</p>
+<p>通过指定方法的访问级别（例如 public 或private）、可选修饰符（例如abstract 或sealed）、返回值、名称和任何方法参数，可以在类或 结构中声明方法。<br>
+为进行方法重载，方法的返回类型不是方法签名的一部分。<br>
+先来看几个概念：<br>
+重载(overload)，重写(override,也称覆盖), 重定义(redefine,也称隐藏)<br>
+(PS:第三个我不确定在英文中是否应该称为redefine，如有问题，留言告知，谢谢)<br>
+一、重载（overload）<br>
+指函数名相同，但是它的参数表列个数或顺序，类型不同。但是不能靠返回类型来判断。<br>
+（1）相同的范围（在同一个作用域中） ；<br>
+（2）函数名字相同；<br>
+（3）参数不同；<br>
+（4）virtual 关键字可有可无。<br>
+（5）返回值可以不同；<br>
+二、重写（也称为覆盖 override）<br>
+是指派生类重新定义基类的虚函数，特征是：<br>
+（1）不在同一个作用域（分别位于派生类与基类） ；<br>
+（2）函数名字相同；<br>
+（3）参数相同；<br>
+（4）基类函数必须有 virtual 关键字，不能有 static 。<br>
+（5）返回值相同（或是协变），否则报错；&lt;—-协变这个概念我也是第一次才知道…<br>
+（6）重写函数的访问修饰符可以不同。尽管 virtual 是 private 的，派生类中重写改写为 public,protected 也是可以的<br>
+三、重定义（也成隐藏）<br>
+（1）不在同一个作用域（分别位于派生类与基类） ；<br>
+（2）函数名字相同；<br>
+（3）返回值可以不同；<br>
+（4）参数不同。此时，不论有无 virtual 关键字，基类的函数将被隐藏（注意别与重载以及覆盖混淆） 。<br>
+（5）参数相同，但是基类函数没有 virtual关键字。此时，基类的函数被隐藏（注意别与覆盖混淆） 。</p>
+<h1 id="经典java题">经典java题</h1>
+<pre><code class="language-java">class B{
+    public B(){
+        System.out.print(&quot;B!\t&quot;);
+    }
+    public void f(double d){
+        g(d);
+    }
+    public void g(int i){
+        System.out.println(&quot;g(int &quot;+i+&quot;) in B!&quot;);
+    }
+    public void g(double d){
+        System.out.println(&quot;g(double &quot;+d+&quot;) in B!&quot;);
+    }
+}
+class C extends B{
+    public C(int i){
+        System.out.println(&quot;Constructor: &quot; + i);
+    }
+    public void f(int i){
+        g(i);
+    }
+    public void g(double d){
+        System.out.println(&quot;g(double &quot;+d+&quot;) in C!&quot;);
+    }
+}
+public class E24 {
+    public static void main(String[] args){
+        //父类 对象名=new 子类（）只能调用父类的函数，不能调用子类的函数，因为它没有继承
+        //子类new子类，可以调用父类的函数也可以调用子类的函数
+        B obj1=new C(1);//父类new子类，先调用父类方法，父类方法被重写则用子类方法
+        obj1.f(2);//调用父类public void f(double d)方法，f调用父类的g(double),g(double)被重写调用子类的g(double)
+        obj1.g(3);//调用父类的g(int)
+        obj1.g(4.0);//父类g(double)被重写
+        C obj2=new C(5);
+        obj2.f(6);//
+        obj2.g(7);
+        obj2.g(8.0);
+    }
+}
+</code></pre>
+<p>输出：<br>
+B!	Constructor: 1<br>
+g(double 2.0) in C!<br>
+g(int 3) in B!<br>
+g(double 4.0) in C!<br>
+B!	Constructor: 5<br>
+g(int 6) in B!<br>
+g(int 7) in B!<br>
+g(double 8.0) in C!</p>
+<p>进程已结束，退出代码为 0</p>
+<h1 id="分离结合的类">分离结合的类</h1>
+<pre><code class="language-java">public class third {
+    public static void main(String[] args) {
+        Orange orange=new Orange();
+        Apple apple=new Apple();
+        Fruit fruit1=new Fruit(apple);
+        Fruit fruit2=new Fruit(orange);
+        fruit1.printfruit();
+        fruit2.printfruit();
+    }
+}
+class Apple{
+    public void printOn(){
+        System.out.println(&quot;This is an apple.&quot;);
+    }
+}
+class Orange{
+    public void writeTo(){
+        System.out.println(&quot;This is an orange.&quot;);
+    }
+}
+class Fruit{
+    private Object fruit;
+    public Fruit(Object o1) {
+        fruit = o1;
+    }
+
+
+    public void printfruit() {
+        if (fruit instanceof Apple) {
+            ((Apple) fruit).printOn();
+        } else if (fruit instanceof Orange) {
+            ((Orange) fruit).writeTo();
+        }
+    }
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B8%8Euml%E5%9B%BE">面向对象与uml图</a></li>
+<li><a href="#%E7%BB%8F%E5%85%B8java%E9%A2%98">经典java题</a></li>
+<li><a href="#%E5%88%86%E7%A6%BB%E7%BB%93%E5%90%88%E7%9A%84%E7%B1%BB">分离结合的类</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://haifengchengguang.github.io/post/mian-xiang-dui-xiang-shang-ke-ju-de-li-zi/">
+              <h3 class="post-title">
+                面向对象——设计模式
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '8c2bfbf18727f466152c',
+    clientSecret: 'c5406e5093c1fc36f0a94093cd581fe5e82784a3',
+    repo: 'haifengchengguang.github.io',
+    owner: 'haifengchengguang',
+    admin: ['haifengchengguang'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+   <div>
+    <a href="https://gridea.dev/" target="_blank">Powered by Gridea&#65281;</a>
+  </div>
+  <div>
+    <strong><i>你是人间的四月天❤</i></strong>
+  <a class="rss" href="https://haifengchengguang.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

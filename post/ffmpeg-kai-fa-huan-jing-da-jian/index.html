@@ -1,0 +1,260 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ffmpeg+qt开发环境搭建 | hrefen</title>
+<link rel="shortcut icon" href="https://haifengchengguang.github.io/favicon.ico?v=1678091929164">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://haifengchengguang.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ffmpeg+qt开发环境搭建 | hrefen - Atom Feed" href="https://haifengchengguang.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-183666884-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-183666884-1');
+</script>
+
+
+    <meta name="description" content="edit at 23/4/2021
+qt creater新建qt widgets application项目，kit selection选择mingw 64-bit，
+下载ffmpeg，https://www.gyan.dev/ffmpeg..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://haifengchengguang.github.io">
+  <img class="avatar" src="https://haifengchengguang.github.io/images/avatar.png?v=1678091929164" alt="">
+  </a>
+  <h1 class="site-title">
+    hrefen
+  </h1>
+  <p class="site-description">
+    我很弱，但是我要坚强！绝不让那些为我付出过的人失望！
+
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              ffmpeg+qt开发环境搭建
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-04-23
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p align="right">edit at 23/4/2021</p>
+<p>qt creater新建qt widgets application项目，kit selection选择mingw 64-bit，</p>
+<p>下载ffmpeg，https://www.gyan.dev/ffmpeg/builds/</p>
+<p>下拉，选择https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full-shared.7z</p>
+<p><strong>SHA256:</strong> 4aaf80f0ee78a9eb5a1396742fd51d1624a705bfa7ce263e9b440b8be7db5650</p>
+<p>将下载好的文件解压，放到项目文件中</p>
+<p>将以下代码复制到.pro文件中</p>
+<pre><code>TEMPLATE = app
+CONFIG += console c++11
+CONFIG -= app_bundle
+CONFIG -= qt
+
+
+INCLUDEPATH += $$PWD/ffmpeg/include
+
+LIBS += $$PWD/ffmpeg/lib/avcodec.lib \
+        $$PWD/ffmpeg/lib/avdevice.lib \
+        $$PWD/ffmpeg/lib/avfilter.lib \
+        $$PWD/ffmpeg/lib/avformat.lib \
+        $$PWD/ffmpeg/lib/avutil.lib \
+        $$PWD/ffmpeg/lib/postproc.lib \
+        $$PWD/ffmpeg/lib/swresample.lib \
+        $$PWD/ffmpeg/lib/swscale.lib
+
+
+LIBS += -L$$PWD/ffmpeg/bin -lavcodec-58
+LIBS += -L$$PWD/ffmpeg/bin -lavdevice-58
+LIBS += -L$$PWD/ffmpeg/bin -lavformat-58
+LIBS += -L$$PWD/ffmpeg/bin -lpostproc-55
+LIBS += -L$$PWD/ffmpeg/bin -lswresample-3
+LIBS += -L$$PWD/ffmpeg/bin -lswscale-5
+</code></pre>
+<p>将以下代码复制到main.cpp中</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+#define __STDC_CONSTANT_MACROS
+
+extern &quot;C&quot;
+{
+#include &quot;libavcodec/avcodec.h&quot;
+};
+
+int main(int argc, char* argv[])
+{
+    printf(&quot;%s&quot;, avcodec_configuration());
+    return 0;
+}
+</code></pre>
+<p>重新打开qt creater</p>
+<p>运行</p>
+<p>弹出窗口</p>
+<pre><code>--enable-gpl --enable-version3 --enable-shared --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-lzma --enable-libsnappy --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-sdl2 --enable-libdav1d --enable-libzvbi --enable-librav1e --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-ffnvcodec --enable-nvdec --enable-nvenc --enable-d3d11va --enable-dxva2 --enable-libmfx --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libilbc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+</code></pre>
+<p>说明环境已经配置好了，可以进行开发了</p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://haifengchengguang.github.io/post/zhong-yu-you-yi-ge-bo-ke-liao-qiao-kai-xin-0/">
+              <h3 class="post-title">
+                终于有一个博客了敲开心:0
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '8c2bfbf18727f466152c',
+    clientSecret: 'c5406e5093c1fc36f0a94093cd581fe5e82784a3',
+    repo: 'haifengchengguang.github.io',
+    owner: 'haifengchengguang',
+    admin: ['haifengchengguang'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+   <div>
+    <a href="https://gridea.dev/" target="_blank">Powered by Gridea&#65281;</a>
+  </div>
+  <div>
+    <strong><i>你是人间的四月天❤</i></strong>
+  <a class="rss" href="https://haifengchengguang.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

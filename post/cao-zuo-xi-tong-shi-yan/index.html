@@ -1,0 +1,302 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>操作系统实验  | hrefen</title>
+<link rel="shortcut icon" href="https://haifengchengguang.github.io/favicon.ico?v=1678091929164">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://haifengchengguang.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="操作系统实验  | hrefen - Atom Feed" href="https://haifengchengguang.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-183666884-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-183666884-1');
+</script>
+
+
+    <meta name="description" content="edit at 23/4/2021
+1.进程控制实验
+
+这个实验我用了vscode，顺道推荐一波kali linux，自带gcc,pyhon,java环境，用的是kde桌面非常舒服。
+
+实验题目
+编写一个父子协作进程，父进程创建一个子进程并..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://haifengchengguang.github.io">
+  <img class="avatar" src="https://haifengchengguang.github.io/images/avatar.png?v=1678091929164" alt="">
+  </a>
+  <h1 class="site-title">
+    hrefen
+  </h1>
+  <p class="site-description">
+    我很弱，但是我要坚强！绝不让那些为我付出过的人失望！
+
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              操作系统实验 
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-04-23
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p align="right">edit at 23/4/2021</p>
+<h2 id="1进程控制实验">1.进程控制实验</h2>
+<ul>
+<li>这个实验我用了vscode，顺道推荐一波kali linux，自带gcc,pyhon,java环境，用的是kde桌面非常舒服。</li>
+</ul>
+<p>实验题目</p>
+<p>编写一个父子协作进程，父进程创建一个子进程并控制它每隔 3 秒显示一次当前目录中的文件名列表。<br>
+实验代码</p>
+<p>pctl.h</p>
+<pre><code class="language-c">#include &lt;sys/types.h&gt; 
+#include &lt;wait.h&gt; 
+#include &lt;unistd.h&gt; 
+#include &lt;signal.h&gt; 
+#include &lt;stdio.h&gt; 
+#include &lt;stdlib.h&gt; //进程自定义的键盘中断信号处理函数
+ typedef void (*sighandler_t) (int); 
+ void sigcat()
+ { 
+     printf(&quot;%d Process continue\n&quot;,getpid());
+     }
+</code></pre>
+<p>pctl.c</p>
+<pre><code class="language-c">#include &quot;pctl.h&quot;
+int main( int argc,char* argv[])
+{
+    int t;
+    int pid;
+    int status;
+    int childpid;
+    char *args[]={&quot;/bin/ls&quot;,&quot;-a&quot;,NULL};
+    signal(SIGUSR1,(sighandler_t)sigcat);
+    pid=fork();
+    if(pid&lt;0)
+    {
+        printf(&quot;Create Process fail!\n&quot;);
+    }
+    if(pid==0)
+    {
+        while ((1))
+        {
+            pause();
+            childpid=fork();
+            if(childpid&lt;0)
+                exit(EXIT_FAILURE);
+            if(childpid==0)
+               { //printf(&quot;I am child process %d\n&quot;,getpid());
+                printf(&quot;child process will Running:\n&quot;);
+                status=execve(args[0],args,NULL);}
+           
+           
+            }
+
+
+        }
+    else{
+                printf(&quot;I am parent process %d\n&quot;,getpid());
+                while (1)
+                {
+                    /* code */
+                    sleep(3);
+                    kill(pid,SIGUSR1);
+                    printf(&quot;%d prarent sent siganl:\n&quot;,getpid());
+                    
+                }
+    }
+    return EXIT_SUCCESS;
+}
+</code></pre>
+<p>编译<br>
+<code>gcc -c pctl.c -o pctl.o</code><br>
+<code>gcc pctl.o -o pctl</code></p>
+<p>运行结果<br>
+<img src="https://haifengchengguang.github.io/post-images/1619162601325.png" alt="" loading="lazy"></p>
+<h2 id="2进程通信实验">2.进程通信实验</h2>
+<ul>
+<li>从这个实验开始我用了clion，在linux里非常舒服，https://www.jetbrains.com/clion/download/#section=linux，从官网下载，解压，在命令行中打开clion-2021.1/bin/，./clion.sh 运行clion，激活就可以愉快地使用Clion了，本来打算学一下makefile，但是感觉这个东西学习成本太高，用处并不是很大，clion自带的cmake就很好用，c++项目管理一般用vs,cmke或qmake。</li>
+</ul>
+<p>实验题目</p>
+<p>请编程建立 3 个并发协作进程，它们分别完成 f(x,y)、f(x)、f(y)<br>
+f(x,y) = f(x) + f(y)<br>
+f(x) = f(x-1) * x (x &gt;1)<br>
+f(x)=1 (x=1)<br>
+f(y) = f(y-1) + f(y-2) (y&gt; 2)<br>
+f(y)=1 (y=1,2）</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%AE%9E%E9%AA%8C">1.进程控制实验</a></li>
+<li><a href="#2%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1%E5%AE%9E%E9%AA%8C">2.进程通信实验</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://haifengchengguang.github.io/post/ffmpeg-kai-fa-huan-jing-da-jian/">
+              <h3 class="post-title">
+                ffmpeg+qt开发环境搭建
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '8c2bfbf18727f466152c',
+    clientSecret: 'c5406e5093c1fc36f0a94093cd581fe5e82784a3',
+    repo: 'haifengchengguang.github.io',
+    owner: 'haifengchengguang',
+    admin: ['haifengchengguang'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+   <div>
+    <a href="https://gridea.dev/" target="_blank">Powered by Gridea&#65281;</a>
+  </div>
+  <div>
+    <strong><i>你是人间的四月天❤</i></strong>
+  <a class="rss" href="https://haifengchengguang.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

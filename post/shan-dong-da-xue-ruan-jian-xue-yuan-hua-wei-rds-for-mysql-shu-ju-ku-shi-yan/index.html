@@ -1,0 +1,286 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>山东大学软件学院华为RDS for MySQL数据库实验 | hrefen</title>
+<link rel="shortcut icon" href="https://haifengchengguang.github.io/favicon.ico?v=1678091929164">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://haifengchengguang.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="山东大学软件学院华为RDS for MySQL数据库实验 | hrefen - Atom Feed" href="https://haifengchengguang.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-183666884-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-183666884-1');
+</script>
+
+
+    <meta name="description" content="edit at 11/6/2021
+基于华为 RDS for MySQL 数据库 实验指导书
+第一部分：实验要求
+一、关于索引的思考
+请思考以下 SQL 是否需要索引以及如何建立索引以及如何建立索引。给出不建立索引、建立不同索引时 SQL ..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://haifengchengguang.github.io">
+  <img class="avatar" src="https://haifengchengguang.github.io/images/avatar.png?v=1678091929164" alt="">
+  </a>
+  <h1 class="site-title">
+    hrefen
+  </h1>
+  <p class="site-description">
+    我很弱，但是我要坚强！绝不让那些为我付出过的人失望！
+
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              山东大学软件学院华为RDS for MySQL数据库实验
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-06-11
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p align="right">edit at 11/6/2021</p>
+<p>基于华为 RDS for MySQL 数据库 实验指导书</p>
+<h1 id="第一部分实验要求">第一部分：实验要求</h1>
+<h2 id="一-关于索引的思考">一、关于索引的思考</h2>
+<p>请思考以下 SQL 是否需要索引以及如何建立索引以及如何建立索引。给出不建立索引、建立不同索引时 SQL 的执行时间。<br>
+下列查询最慢的需要2秒，感觉这速度可以了hhh，不用建索引了</p>
+<p>1、	查询学号为“200900140169”的学生选修的所有课程名称和考试成绩。</p>
+<pre><code class="language-sql">select a.sid,a.cid,a.score,b.cname from `student_course` AS a,`course` AS b  WHERE a.sid='200900140169' and a.cid=b.cid
+</code></pre>
+<p>9ms</p>
+<p>2、	查询“软件学院”学生的姓名。</p>
+<pre><code class="language-sql">select dno from department where dname='软件学院'
+</code></pre>
+<p>10ms<br>
+dno='d10'</p>
+<pre><code class="language-sql">select name from student where dno='d10'
+</code></pre>
+<p>11ms</p>
+<p>3、	查询“软件学院”的学生学号和选修课程的编号。</p>
+<pre><code class="language-sql">select sid,cid from student_course where sid in SELECT sid FROM student WHERE dno='d10'
+</code></pre>
+<p>11ms</p>
+<p>4、	查询学生姓名、所选课程和考试成绩。（仅包含选课的学生）</p>
+<pre><code class="language-sql">select sid,cid,score from student_course 
+</code></pre>
+<p>10ms</p>
+<pre><code class="language-sql">select sid,student_course.cid,cname,score from student_course,course where student_course.cid =course.cid
+</code></pre>
+<p>23ms</p>
+<p>5、	查询学生姓名、所选课程和考试成绩。（包含所有的学生）</p>
+<pre><code class="language-sql">SELECT student.sid,cid,score 
+FROM student
+	LEFT JOIN student_course ON student.sid = student_course.sid 
+</code></pre>
+<p>9ms</p>
+<pre><code class="language-sql">SELECT sid,a.cid,cname,score FROM 
+(SELECT student.sid as sid,cid,score 
+FROM student
+	LEFT JOIN student_course ON student.sid = student_course.sid) as a
+,course WHERE a.cid=course.cid
+</code></pre>
+<p>9ms</p>
+<p>6、	查询每门课(仅限于被学生选修的课程)的课程名称、平均成绩、最高成绩、 最低成绩和选修学生人数。</p>
+<pre><code class="language-sql">SELECT cname, avg(score), max(score)
+	, MIN(score), COUNT(sid)
+FROM course, student_course
+WHERE course.cid = student_course.cid
+GROUP BY student_course.cid
+</code></pre>
+<p>1953ms 这个需要建索引</p>
+<p>7、	查询每门课(包括没有学生选修的课程)的课程名称、平均成绩、最高成绩、 最低成绩和选修学生人数。</p>
+<pre><code class="language-sql">SELECT cname, avg(score), max(score)
+	, MIN(score), COUNT(sid)
+FROM (select student.sid as sid,cid,score FROM student LEFT JOIN student_course ON student.sid=student_course.sid) as a,course 
+WHERE course.cid = a.cid
+GROUP BY course.cid 
+</code></pre>
+<p>2052 ms 需要建索引</p>
+<p>8、	查询选课学生的平均学时和平均学分。</p>
+<pre><code class="language-sql">SELECT AVG(sumperiod),avg(sumcredit) from (select sid,sum(period) as sumperiod,sum(credit) as sumcredit from student_course,course WHERE student_course.cid =course.cid GROUP BY sid) as a 
+</code></pre>
+<p>1392 ms 需要建索引</p>
+<p>9、	查询全体学生的平均选课数量（包括未选课的学生）。</p>
+<pre><code class="language-sql">SELECT AVG(countcid) FROM (SELECT student.sid,COUNT(cid) as countcid FROM student LEFT JOIN student_course on student.sid=student_course.sid GROUP BY sid) as a 
+</code></pre>
+<p>238 ms</p>
+<h2 id="二-请撰写华为rds-for-mysql-数据库与oracle-数据库在-使用方面的对比体会">二、请撰写华为RDS for MySQL 数据库与Oracle 数据库在 使用方面的对比体会。</h2>
+<p>1、Mysql更名运算需要加as，Oracle不能加<br>
+2、mysql要求每一个派生出来的表都必须有一个自己的别名，用as给派生表加上别名即可；<br>
+<img src="https://haifengchengguang.github.io/post-images/1623395594033.png" alt="" loading="lazy"></p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82">第一部分：实验要求</a>
+<ul>
+<li><a href="#%E4%B8%80-%E5%85%B3%E4%BA%8E%E7%B4%A2%E5%BC%95%E7%9A%84%E6%80%9D%E8%80%83">一、关于索引的思考</a></li>
+<li><a href="#%E4%BA%8C-%E8%AF%B7%E6%92%B0%E5%86%99%E5%8D%8E%E4%B8%BArds-for-mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8Eoracle-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9C%A8-%E4%BD%BF%E7%94%A8%E6%96%B9%E9%9D%A2%E7%9A%84%E5%AF%B9%E6%AF%94%E4%BD%93%E4%BC%9A">二、请撰写华为RDS for MySQL 数据库与Oracle 数据库在 使用方面的对比体会。</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://haifengchengguang.github.io/post/luo-xiang-yu-lu/">
+              <h3 class="post-title">
+                罗翔语录
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '8c2bfbf18727f466152c',
+    clientSecret: 'c5406e5093c1fc36f0a94093cd581fe5e82784a3',
+    repo: 'haifengchengguang.github.io',
+    owner: 'haifengchengguang',
+    admin: ['haifengchengguang'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+   <div>
+    <a href="https://gridea.dev/" target="_blank">Powered by Gridea&#65281;</a>
+  </div>
+  <div>
+    <strong><i>你是人间的四月天❤</i></strong>
+  <a class="rss" href="https://haifengchengguang.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

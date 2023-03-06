@@ -1,0 +1,1126 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>c++ pta | hrefen</title>
+<link rel="shortcut icon" href="https://haifengchengguang.github.io/favicon.ico?v=1678091929164">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://haifengchengguang.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="c++ pta | hrefen - Atom Feed" href="https://haifengchengguang.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-183666884-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-183666884-1');
+</script>
+
+
+    <meta name="description" content="edit at 25/5/2021
+6-1 类模板Point的定义与使用 (10 分)
+定义类模板Point，有两个坐标(x,y)，x和y的类型可以不同，坐标的数据类型可以是int、float,double类型. 具有获取坐标的成员函数ge..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://haifengchengguang.github.io">
+  <img class="avatar" src="https://haifengchengguang.github.io/images/avatar.png?v=1678091929164" alt="">
+  </a>
+  <h1 class="site-title">
+    hrefen
+  </h1>
+  <p class="site-description">
+    我很弱，但是我要坚强！绝不让那些为我付出过的人失望！
+
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              c++ pta
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-05-18
+              </span>
+              <span>
+                27 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p align="right">edit at 25/5/2021</p>
+<p>6-1 类模板Point的定义与使用 (10 分)<br>
+定义类模板Point，有两个坐标(x,y)，x和y的类型可以不同，坐标的数据类型可以是int、float,double类型. 具有获取坐标的成员函数getX和getY。</p>
+<p>接口定义：</p>
+<p><code>class Point</code><br>
+裁判测试程序</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+@@@
+
+int main()
+{
+
+    Point&lt;int, int&gt; p1(10, 20);
+    Point&lt;int, float&gt; p2(10, 20.5f);
+    Point&lt;float, float&gt; p3(10.5f, 20.5f);
+    Point&lt;double, double &gt; p4(10.5, 20.5);
+    cout&lt;&lt;p1.getX()&lt;&lt;&quot;,&quot;&lt;&lt;p1.getY()&lt;&lt;endl;
+    cout&lt;&lt;p2.getX()&lt;&lt;&quot;,&quot;&lt;&lt;p2.getY()&lt;&lt;endl;
+    cout&lt;&lt;p3.getX()&lt;&lt;&quot;,&quot;&lt;&lt;p3.getY()&lt;&lt;endl;
+    cout&lt;&lt;p4.getX()&lt;&lt;&quot;,&quot;&lt;&lt;p4.getY()&lt;&lt;endl;
+  return 0;
+
+}
+
+/* 请在这里填写答案 */
+</code></pre>
+<p>10,20<br>
+10,20.5<br>
+10.5,20.5<br>
+10.5,20.5</p>
+<pre><code class="language-c++">template&lt;class T,class U&gt;
+class Point
+{
+public:
+	T x;
+	U y;
+	Point(T x,U y)
+	{
+		this-&gt;x = x;
+		this-&gt;y = y;
+	}
+	T getX() const;
+	U getY() const;
+	
+};
+template &lt;class T, class U&gt;
+T Point&lt;T, U&gt;::getX() const
+{
+	return x;
+}
+template &lt;class T, class U&gt;
+U Point&lt;T, U&gt;::getY() const
+{
+	return y;
+}
+</code></pre>
+<p>7-1 设计一个矩形类Rectangle并创建测试程序（C++） (10 分)<br>
+设计一个名为Rectangle的矩形类，这个类包括：两个名为width和height的double数据域，它们分别表示矩形的宽和高。width和height的默认值都为1.该类包括矩形类的无参构造函数（默认构造函数）；一个width和height为指定值的矩形构造函数；一个名为getArea( )的函数返回矩形的面积；一个名为getPerimeter( )的函数返回矩形的周长。请实现这个类。编写一个测试程序，创建一个Rectangle对象，从键盘输入矩形的宽和高，然后输出矩形的面积和周长。</p>
+<p>输入格式:<br>
+3.5 35.9（第一个数表示矩形的宽，第二个数表示矩形的高，中间是空间分隔。）</p>
+<p>输出格式:<br>
+125.65 （第一行输出矩形的面积） 78.8 （第二行输出矩形的周长）</p>
+<p>输入样例:<br>
+3.5 35.9<br>
+输出样例:<br>
+125.65<br>
+78.8</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+class Rectangle
+{
+public:
+	double width;
+	double height;
+	Rectangle()
+	{
+		width = 1.0;
+		height = 1.0;
+	}
+	Rectangle(double width,double height)
+	{
+		this-&gt;height = height;
+		this-&gt;width = width;
+	}
+	double getArea();
+	double getPerimeter();
+	
+};
+double Rectangle::getArea()
+{
+	return height * width;
+}
+double Rectangle::getPerimeter()
+{
+	return height * 2.0 + width * 2.0;
+}
+
+int main()
+{
+	double height, width;
+	cin &gt;&gt; height &gt;&gt; width;
+	Rectangle rectangle(width,height);
+	cout &lt;&lt; rectangle.getArea() &lt;&lt; endl;
+	cout &lt;&lt; rectangle.getPerimeter() &lt;&lt; endl;
+	
+	
+	
+}
+</code></pre>
+<p>7-2 复数类的运算 (10 分)<br>
+根据以下代码段完善 ?? 处内容及程序内容，以实现规定的输出。</p>
+<p>class Complex<br>
+{<br>
+public:<br>
+Complex(double r=0, double i=0):real(r), imag(i){    }<br>
+Complex operator+( ?? ) const;//重载双目运算符'+'<br>
+Complex operator-=( ?? ); //重载双目运算符'-='<br>
+friend Complex operator-( ?? ) const;//重载双目运算符'-'<br>
+void Display() const;<br>
+private:<br>
+double real;<br>
+double imag;<br>
+};</p>
+<p>void Complex::Display() const<br>
+{<br>
+cout &lt;&lt; &quot;(&quot; &lt;&lt; real &lt;&lt; &quot;, &quot; &lt;&lt; imag &lt;&lt; &quot;)&quot; &lt;&lt; endl;<br>
+}</p>
+<p>int main()<br>
+{<br>
+double r, m;<br>
+cin &gt;&gt; r &gt;&gt; m;<br>
+Complex c1(r, m);<br>
+cin &gt;&gt; r &gt;&gt; m;<br>
+Complex c2(r, m);<br>
+Complex c3 = c1+c2;<br>
+c3.Display();<br>
+c3 = c1-c2;<br>
+c3.Display();<br>
+c3 -= c1;<br>
+c3.Display();<br>
+return 0;<br>
+}<br>
+输入格式:<br>
+输入有两行，分别为两个复数的实部与虚部。</p>
+<p>输出格式:<br>
+按样例格式输出结果。</p>
+<p>输入样例:<br>
+在这里给出一组输入。例如：</p>
+<p>4 2<br>
+3 -5<br>
+输出样例:<br>
+在这里给出相应的输出。例如：</p>
+<p>(7, -3)<br>
+(1, 7)<br>
+(-3, 5)</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+class Complex
+{
+public:
+    Complex(double r = 0, double i = 0) :real(r), imag(i) {    }
+    Complex operator+(const Complex&amp; c) const;//重载双目运算符'+' 括号内取地址，不能修改；最后一个const表示不修改类
+    Complex operator-=(const Complex&amp; c); //重载双目运算符'-='
+    friend Complex operator-( const Complex&amp; b,const Complex&amp; c ) ;//重载双目运算符'-'
+    void Display() const;
+private:
+    double real;
+    double imag;
+};
+
+void Complex::Display() const
+{
+    cout &lt;&lt; &quot;(&quot; &lt;&lt; real &lt;&lt; &quot;, &quot; &lt;&lt; imag &lt;&lt; &quot;)&quot; &lt;&lt; endl;
+}
+Complex Complex::operator+(const Complex&amp; c)const
+{
+    return  Complex(real + c.real, imag + c.imag);
+}
+Complex Complex::operator-=(const Complex&amp; c) 
+{
+    return Complex(real -= c.real, imag -= c.imag);
+}
+Complex operator-(const Complex&amp; b,const Complex&amp; c)
+{
+    return Complex(b.real-c.real,b.imag-c.imag);
+}
+int main()
+{
+    double r, m;
+    cin &gt;&gt; r &gt;&gt; m;
+    Complex c1(r, m);
+    cin &gt;&gt; r &gt;&gt; m;
+    Complex c2(r, m);
+    Complex c3 = c1+c2;
+    c3.Display();
+    c3 = c1-c2;
+    c3.Display();
+    c3 -= c1;
+    c3.Display();
+    return 0;
+}
+</code></pre>
+<p>7-3 复数的比较 (10 分)<br>
+题目描述：建立一个复数类，实数和虚数是其私有数据成员。建立一个&gt;（大于号）的运算符重载，比较两个复数间模的大小。</p>
+<p>输入格式：测试输入包含若干测试用例，每个测试用例占一行。每个测试用例包括四个数字，前两个数字分别表示第一个复数的实部和虚部，第三个和第四个数字分别表示第二个复数的实部和虚部。每个数字之间用空格间隔。当读入一个测试用例是0 0 0 0时输入结束，相应的结果不要输出。</p>
+<p>输出格式：对每个测试用例输出一行。当第一个复数的模大于第二个复数的模时，输出 true ，当第一个复数的模小于或等于第二个复数的模时，输出false</p>
+<p>输入样例：</p>
+<p>3 5 4 0</p>
+<p>0 3 4 1</p>
+<p>0 0 0 0</p>
+<p>输出样例：</p>
+<p>true</p>
+<p>false</p>
+<pre><code class="language-c++">// negativeNumberCompare.cpp : 此文件包含 &quot;main&quot; 函数。程序执行将在此处开始并结束。
+//
+
+#include &lt;iostream&gt;
+using namespace std;
+
+class negativeNumber
+{
+public:
+	friend bool operator&gt;(const negativeNumber&amp; b, const negativeNumber&amp; c);
+	negativeNumber(double r = 0, double i = 0) : real(r),imag(i){}
+	//bool operator&gt;(const negativeNumber&amp; b) const;
+private:
+	double real;
+	double imag;
+
+};
+//bool negativeNumber::operator&gt;(const negativeNumber&amp; b) const
+//{
+//	return (real * real + imag * imag) &gt; (b.real * b.real + b.imag * b.imag);
+//}
+bool operator&gt;(const negativeNumber&amp; b, const negativeNumber&amp; c)
+{
+	return  (b.real * b.real + b.imag * b.imag)&gt; (c.real * c.real + c.imag * c.imag);
+}
+int main()
+{
+	/*negativeNumber b(1, 1);
+	negativeNumber c(2, 2);
+	if (b &gt; c)
+	{
+		cout &lt;&lt; &quot;error&quot; &lt;&lt; endl;
+	}
+	else cout &lt;&lt; &quot;correct&quot; &lt;&lt; endl;*/
+	while (true)
+	{
+		int a, b, c, d;
+		cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d;
+		if (a == 0 &amp;&amp; b == 0 &amp;&amp; c == 0 &amp;&amp; d == 0) break;
+		negativeNumber x(a, b);
+		negativeNumber y(c, d);
+		if (x &gt; y) cout &lt;&lt; &quot;true&quot; &lt;&lt; endl;
+		else cout &lt;&lt; &quot;false&quot; &lt;&lt; endl;
+	}
+	
+	
+}
+
+</code></pre>
+<p>7-7 车辆选择（继承） (10 分)<br>
+有一个汽车类vehicle，它具有一个需传递参数的构造函数，汽车类vehicle中的数据成员为： 车轮个数wheels和车重weight放在保护段中，汽车类vehicle中的公有成员函数为：get_wheels()（返回车轮个数的值）、get_weight()（返回车重的值）、wheel_load()（返回每个轮胎的载重量的值：weight/wheels）、print()（输出车轮的个数和车重的公斤数）；</p>
+<p>小车类car是vehicle类的派生类，它具有一个需传递参数的构造函数，小车类car中的私有数据成员为：车载人数passenger_load，小车类car中的公有成员函数为：get_passengers()（返回车载人数的值）、print()（输出小车车轮的个数和车重的公斤数以及车载人数的个数）；</p>
+<p>卡车类truck是vehicle类的派生类，它具有一个需传递参数的构造函数，卡车类truck中的私有数据成员为：载人数passenger_load和载重量payload，卡车类truck中的公有成员函数为：get_passengers()（返回车载人数的值）、efficiency（）(返回卡车的载重效率的值：payload/(payload+weight)、print()（输出卡车车轮的个数和车重的公斤数以及车载人数的个数和卡车的载重效率的值）)。</p>
+<p>生成上述类并编写主函数，根据输入的车辆基本信息，建立车辆对象，并能计算输出该车辆的基本信息。 输入格式：测试输入包含一个测试用例，每一行给出一个车辆的基本信息，每行的第一个字符处为当前车辆的类型，第二个数字为当前车辆的编号，若车辆为vehicle，后面跟随两个数字分别为wheels和weight，若车辆为car，后面跟随三个数字分别为wheels，weight和车载人数，若车辆为truck，后面跟随四个数字分别是wheels，weight、车载人数和载重量。（以上数字均为整型）。-1表示输入结束，相应结果不要输出。请注意输出格式，按照输入顺序进行编号 说明：本题中轮胎载重量、载重效率若需输出保留小数点后两位。</p>
+<p>输入样例：</p>
+<p>vehicle 101 4 1900</p>
+<p>car 201 4 2000 5</p>
+<p>truck 301 6 3000 2 9000</p>
+<p>car 202 4 1800 4</p>
+<p>-1</p>
+<p>输出样例：</p>
+<p>The 1st object is Vehicle No. 101: weight 1900 Kg and wheels 4</p>
+<p>The 2nd object is Car No. 201: passenger_load 5 weight 2000 Kg and wheels 4</p>
+<p>The 3rd object is Truck No. 301: passenger_load 2 weight 3000 Kg wheels 6 and efficiency 0.75</p>
+<p>The 4th object is Car No. 202: passenger_load 4 weight 1800 Kg and wheels 4</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+class vehicle
+{
+public:
+	vehicle(int whee,int weig):wheels(whee),weight(weig){}
+	int get_wheels() { return wheels; }
+	int get_weight() { return weight; }
+	int wheel_load() { return weight / wheels; }
+	virtual void print() { printf(&quot;weight %d Kg and wheels %d&quot;, weight, wheels); }
+protected:
+	int wheels;
+	int weight;
+};
+
+class car:vehicle
+{
+public:
+	car(int pass,int whee,int weig):vehicle(whee,weig)
+	{
+		passenger_load = pass;
+	}
+	int get_passengers() { return passenger_load; }
+	void print() { printf(&quot;passenger_load %d weight %d Kg and wheels %d&quot;, passenger_load, weight, wheels); }
+private:
+	int passenger_load;
+};
+
+class truck:vehicle
+{
+public:
+	truck(int pay,int pass, int whee, int weig):vehicle(whee,weig)
+	{
+		passenger_load = pass;
+		payload = pay;
+	}
+	int get_passengers() { return passenger_load; }
+	double efficiency() {
+		return (double) payload / (payload + weight);
+	}
+	void print() { printf(&quot;passenger_load %d weight %d Kg wheels %d and efficiency %0.2f&quot;, passenger_load, weight, wheels, efficiency()); }
+private:
+	int passenger_load;
+	int payload;
+};
+const char* ordinal_suffix(int n)
+{
+	static const char suffixes[][3] = { &quot;th&quot;, &quot;st&quot;, &quot;nd&quot;, &quot;rd&quot; };
+	auto ord = n % 100;
+	if (ord / 10 == 1) { ord = 0; }
+	ord = ord % 10;
+	if (ord &gt; 3) { ord = 0; }
+	return suffixes[ord];
+}
+int main()
+{
+	int count1 = 0;
+	while (true)
+	{
+		count1++;
+		string a;
+		cin &gt;&gt; a;
+		int number, whel, weg;
+		if (a == &quot;vehicle&quot;)
+		{
+			cin &gt;&gt; number &gt;&gt; whel &gt;&gt; weg;
+			vehicle vehicle1(whel, weg);
+			//printf(&quot;The %dst object is %s No. %d: &quot;,count1,a,b);
+			cout &lt;&lt; &quot;The &quot; &lt;&lt; count1 &lt;&lt;ordinal_suffix(count1)&lt;&lt; &quot; object is Vehicle No. &quot; &lt;&lt; number &lt;&lt; &quot;: &quot;;
+			vehicle1.print();
+			cout &lt;&lt; endl;
+			
+		}
+		else if (a == &quot;car&quot;)
+		{
+			int passager;
+			cin &gt;&gt; number &gt;&gt; whel &gt;&gt; weg &gt;&gt; passager;
+			car car1(passager, whel, weg);
+			//printf(&quot;The %dst object is Vehicle No. %d: &quot;, count1, b);
+			cout &lt;&lt; &quot;The &quot; &lt;&lt; count1 &lt;&lt; ordinal_suffix(count1) &lt;&lt; &quot; object is Car No. &quot; &lt;&lt; number &lt;&lt; &quot;: &quot;;
+			car1.print();
+			cout &lt;&lt; endl;
+			
+		}
+		else if (a == &quot;truck&quot;)
+		{
+			int passager, payee;
+			cin &gt;&gt; number &gt;&gt; whel &gt;&gt; weg &gt;&gt; passager &gt;&gt; payee;
+			truck truck1(payee, passager, whel, weg);
+			cout &lt;&lt; &quot;The &quot; &lt;&lt; count1 &lt;&lt; ordinal_suffix(count1) &lt;&lt; &quot; object is Truck No. &quot; &lt;&lt; number &lt;&lt; &quot;: &quot;;
+			truck1.print();
+			cout &lt;&lt; endl;
+			
+		}
+		else if (a == &quot;-1&quot;)
+		{
+			exit(0);
+		}
+	}
+}
+</code></pre>
+<p>7-8 多边形周长计算（继承） (10 分)<br>
+给出下面的多边形基类框架：</p>
+<p>class polygon</p>
+<p>{ protected:</p>
+<p>int number;//边数，最多不超过100条边<br>
+private:</p>
+<p>int side_length[100];//边长数组<br>
+public:</p>
+<p>polygon();//构造函数根据需要重载<br>
+int perimeter();//计算多边形边长<br>
+void display();//输出多边形边数和周长<br>
+}</p>
+<p>建立一个派生类rectangle(矩形)，增加以下数据成员：</p>
+<p>int height;<br>
+int width;<br>
+增加以下成员函数：</p>
+<p>rectangle类的无参和参数化构造函数<br>
+int perimeter();//计算矩形边长<br>
+void display();//输出多边形边数和周长<br>
+建立一个派生类equal_polygon(等边多边形)，增加以下数据成员：</p>
+<p>int side_len;<br>
+增加以下成员函数：</p>
+<p>equal_polygon类的无参和参数化构造函数<br>
+int perimeter();//计算等边多边形边长<br>
+void display();//输出多边形边数和周长<br>
+生成上述类并编写主函数，根据输入的多边形信息，相应建立一个多边形类对象或矩形类对象或等边多边形类对象，计算每一个多边形的周长并且输出其边数和周长。</p>
+<p>输入格式： 测试输入包含一个测试用例，该测试用例的第一行输入多边形的个数n，接下来n行每一行给出一个多边形的基本信息，每行的第一个数字为当前多边形的类型，0为一般多边形，后面跟随m个数字为m条边的边长，-1为一般多边形边长输入结束标志，1为矩形，后面跟随两个数字，分别为height和width，2为等边多边形，后面跟随两个数字为等边多边形的边数和边长。</p>
+<p>输入样例：</p>
+<p>3</p>
+<p>0 32 54 76 88 24 -1</p>
+<p>1 32 54</p>
+<p>2 3 32</p>
+<p>输出样例：</p>
+<p>5 274</p>
+<p>4 172</p>
+<p>3 96</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+class polygon
+
+{
+protected:
+
+	int number;//边数，最多不超过100条边
+private:
+
+	int side_length[100];//边长数组
+public:
+	polygon() { }
+	polygon(int num) :number(num) {}//构造函数根据需要重载
+	void setside(int i,int element)
+	{
+		side_length[i] = element;
+	}
+	virtual int perimeter()
+	{
+		int perime = 0;
+		for(int i=0;i&lt;number;i++)
+		{
+			perime += side_length[i];
+		}
+		return perime;
+	}//计算多边形边长
+	virtual void display()
+	{
+		cout &lt;&lt; number &lt;&lt; &quot; &quot; &lt;&lt; perimeter() &lt;&lt; endl;
+	}//输出多边形边数和周长
+};
+
+class rectangle:polygon
+{
+public:
+	rectangle() {}//类的无参和参数化构造函数
+	rectangle(int hei,int wid):height(hei),width(wid){}
+	int perimeter() { return 2 * height + 2 * width; }//计算矩形边长
+	void display() { cout &lt;&lt; &quot;4&quot; &lt;&lt; &quot; &quot; &lt;&lt; perimeter() &lt;&lt; endl; }//输出多边形边数和周长
+private:
+	int height;
+	int width;
+};
+
+class equal_polygon:polygon
+{
+public:
+	equal_polygon(){}
+	equal_polygon(int num, int side) :polygon(num) { side_len = side; }
+	int perimeter() { return number * side_len; }//计算等边多边形边长
+	void display() { cout &lt;&lt; number &lt;&lt; &quot; &quot; &lt;&lt; perimeter() &lt;&lt; endl; }//输出多边形边数和周长
+private:
+	int side_len;
+};
+int main()
+{
+	int n;
+	cin &gt;&gt; n;
+	for(int i=0;i&lt;n;i++)
+	{
+		int kind;
+		cin &gt;&gt; kind;
+		if(kind==0)
+		{
+			vector&lt;int&gt; v;
+			while (true)
+			{
+				int j;
+				cin &gt;&gt; j;
+				if(j!=-1)
+				v.push_back(j);
+				else break;
+				
+			}
+			polygon polygon1(v.size());
+			for (int k = 0; k &lt; v.size(); k++)
+				polygon1.setside(k, v.at(k));
+			polygon1.display();
+		}
+		else if(kind==1)
+		{
+			int a, b;
+			cin &gt;&gt; a &gt;&gt; b;
+			rectangle rectangle1(a, b);
+			rectangle1.display();
+		}
+		else if(kind==2)
+		{
+			int num1, lenth;
+			cin &gt;&gt; num1 &gt;&gt; lenth;
+			equal_polygon equal_polygon1(num1, lenth);
+			equal_polygon1.display();
+		}
+	}
+}
+</code></pre>
+<p>7-9 日程安排（多重继承+重载） (10 分)<br>
+已有一个日期类Date，包括三个protected成员数据</p>
+<p>int year;</p>
+<p>int month;</p>
+<p>int day;</p>
+<p>另有一个时间类Time，包括三个protected成员数据</p>
+<p>int hour;</p>
+<p>int minute;</p>
+<p>int second;</p>
+<p>现需根据输入的日程的日期时间，安排前后顺序，为此以Date类和Time类为基类，建立一个日程类Schedule，包括以下新增成员：</p>
+<p>int ID；//日程的ID</p>
+<p>bool operator &lt; (const Schedule &amp; s2);//判断当前日程时间是否早于s2</p>
+<p>生成以上类，并编写主函数，根据输入的各项日程信息，建立日程对象，找出需要最早安排的日程，并输出该日程对象的信息。</p>
+<p>输入格式： 测试输入包含若干日程，每个日程占一行（日程编号ID 日程日期（<strong>//）日程时间（:</strong>😗*））。当读入0时输入结束，相应的结果不要输出。</p>
+<p>输入样例：</p>
+<p>1 2014/06/27 08:00:01</p>
+<p>2 2014/06/28 08:00:01</p>
+<p>0</p>
+<p>输出样例：</p>
+<p>The urgent schedule is No.1: 2014/6/27 8:0:1</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+class Date
+{
+public:
+	int toIntData() {
+		return year * 10000 + month * 100 + day;
+	}
+	void showdate() { cout &lt;&lt; &quot; &quot; &lt;&lt; year &lt;&lt; &quot;/&quot; &lt;&lt; month &lt;&lt; &quot;/&quot; &lt;&lt; day; }
+	Date(int year1,int month1,int day1):year(year1),month(month1),day(day1){}
+protected:int year;
+
+	   int month;
+
+	   int day;
+};
+
+class Time
+{
+public:
+	Time(int hour1,int minute1,int second1):hour(hour1),minute(minute1),second(second1){}
+	int toIntTime() {
+		return hour * 10000 + minute * 100 + second;
+	}
+	void showtime() { cout &lt;&lt; &quot; &quot; &lt;&lt; hour &lt;&lt; &quot;:&quot; &lt;&lt; minute &lt;&lt; &quot;:&quot; &lt;&lt; second; }
+protected:
+	int hour;
+
+	int minute;
+
+	int second;
+};
+
+class Schedule:Date,Time
+{
+public:
+	Schedule(int yea1, int mont1, int da1, int hou1, int min1, int sec1, int id1) :Date(yea1, mont1, da1), Time(hou1, min1, sec1) { ID = id1; }
+	bool operator &lt; ( Schedule&amp; s2);//判断当前日程时间是否早于s
+	void show() {
+		cout &lt;&lt; &quot;No.&quot; &lt;&lt; ID &lt;&lt; &quot;:&quot;;
+		Date::showdate();
+		Time::showtime();
+	}
+private:
+	int ID;//日程的ID
+};
+bool Schedule::operator&lt;(Schedule&amp; s2)
+{
+	if (this-&gt;toIntData() != s2.toIntData()) {
+		return toIntData() &lt; s2.toIntData();
+	}
+	else {
+		return toIntTime() &lt; s2.toIntTime();
+	}
+	
+}
+
+int main()
+{
+	int n;
+	int a, b, c, d, e, f;
+	Schedule s2(9999, 9999, 9999, 9999, 999, 999, 0);
+	while (cin &gt;&gt; n, n != 0) {
+		scanf(&quot;%d/%d/%d&quot;, &amp;a, &amp;b, &amp;c);
+		scanf(&quot;%d:%d:%d&quot;, &amp;d, &amp;e, &amp;f);
+		Schedule s1(a, b, c, d, e, f,n);
+		if (s1 &lt; s2) {
+			s2 = s1;
+		}
+	}
+	cout &lt;&lt; &quot;The urgent schedule is &quot;; s2.show();
+}
+</code></pre>
+<p>7-11 动物世界 (10 分)<br>
+补充程序 ：</p>
+<p>1、实现Mammal类的方法</p>
+<p>2、由Mammal类派生出Dog类，在Dog类中增加itsColor成员(COLOR类型)</p>
+<p>3、Dog类中增加以下方法：</p>
+<p>constructors: Dog()、Dog(int age)、Dog(int age, int weight)、Dog(int age, COLOR color)、 Dog(int age, int weight, COLOR color)、~Dog()</p>
+<p>accessors: GetColor()、SetColor()</p>
+<p>Other methods: WagTail()、BegForFood() ，并实现以上这些方法 。</p>
+<p>提示：类似Speak()、WagTail()这些动作，函数体可以是输出一句话。比如：Mammal is spaeking... , The Dog is Wagging its tail...</p>
+<p>4、补充主函数的问号部分，并运行程序，检查输出是否合理。</p>
+<p>enum COLOR{ WHITE, RED, BROWN, BLACK, KHAKI };</p>
+<p>class Mammal<br>
+{<br>
+public:<br>
+//constructors<br>
+Mammal();<br>
+Mammal(int age);<br>
+~Mammal();</p>
+<pre><code>    //accessors
+    int GetAge() const;
+    void SetAge(int);
+    int GetWeight() const;
+    void SetWeight(int);
+
+    //Other methods    
+    void Speak() const;
+    void Sleep() const;        
+protected:
+    int itsAge;
+    int itsWeight;
+</code></pre>
+<p>};</p>
+<p>int main()<br>
+{<br>
+Dog Fido;<br>
+Dog Rover(5);<br>
+Dog Buster(6, 8);<br>
+Dog Yorkie(3, RED);<br>
+Dog Dobbie(4, 20, KHAKI);<br>
+Fido.Speak();<br>
+Rover.WagTail();<br>
+cout &lt;&lt; &quot;Yorkie is &quot; &lt;&lt; ?? &lt;&lt; &quot; years old.&quot; &lt;&lt; endl;<br>
+cout &lt;&lt; &quot;Dobbie    weighs &quot; &lt;&lt; ?? &lt;&lt; &quot; pounds.&quot; &lt;&lt; endl;<br>
+return 0;<br>
+}<br>
+输入格式:<br>
+无</p>
+<p>输出格式:<br>
+按照程序格式输出。</p>
+<p>输入样例:<br>
+在这里给出一组输入。例如：</p>
+<p>无<br>
+输出样例:<br>
+在这里给出相应的输出。例如：</p>
+<p>Mammal is speaking...<br>
+The dog is wagging its tail...<br>
+Yorkie is 3 years old.<br>
+Dobbie weighs 20 pounds.</p>
+<pre><code class="language-c++">enum COLOR{ WHITE, RED, BROWN, BLACK, KHAKI };
+#include&lt;iostream&gt;
+using namespace std;
+class Mammal
+{
+	public:
+		//constructors
+		Mammal()
+		{
+			itsAge=0;
+			itsWeight=0;
+		}
+		;
+		Mammal(int age)
+		{
+			itsAge=age;
+		}
+		Mammal(int age,int weight)
+		{
+			itsAge=age;
+			itsWeight=weight;
+		}
+		
+		//accessors
+		int GetAge()const
+		{
+			return itsAge;
+		}
+	int GetWeight()const
+	{
+		return itsWeight;
+	}
+		void SetWeight(int Weight)
+		{
+			itsWeight=Weight;
+		}
+		
+		//Other methods		
+	protected:
+		int itsAge;
+		int itsWeight;
+};
+class Dog:public Mammal
+{
+	COLOR itsColor;
+	public:
+		void Speak(){
+		cout&lt;&lt;&quot;Mammal is speaking...&quot;&lt;&lt;endl;
+}
+     void WagTail(){
+     	cout&lt;&lt;&quot;The dog is wagging its tail...&quot;&lt;&lt;endl;
+	 }
+	 Dog(){
+	 }
+	 Dog(int age):Mammal(age)
+	 {
+	 	
+	 }
+	 Dog(int age,int weight):Mammal(age,weight)
+	 {
+	 	
+	 }
+	 Dog(int age,int weight,COLOR x):Mammal(age,weight)
+	 {
+	 	itsColor=x;
+	 }
+	 
+};
+
+int main()
+{
+	Dog Fido;
+	Dog Rover(5);
+	Dog Buster(6, 8);
+	Dog Yorkie(3, RED);
+	Dog Dobbie(4, 20, KHAKI);
+	Fido.Speak();
+	Rover.WagTail();
+	cout &lt;&lt; &quot;Yorkie is &quot; &lt;&lt; Yorkie.GetAge() &lt;&lt; &quot; years old.&quot; &lt;&lt; endl;
+	cout &lt;&lt; &quot;Dobbie weighs &quot; &lt;&lt; Dobbie.GetWeight() &lt;&lt; &quot; pounds.&quot;;   
+	return 0;
+}
+</code></pre>
+<p>7-12 马会飞 (10 分)<br>
+已知Horse类是Pegasus类的父类，根据以下主函数完善程序内容，以实现规定的输出。不允许改变主函数的内容。</p>
+<p>int main()<br>
+{<br>
+Horse *p1 = new Horse; //输出：Horse 申请了空间...<br>
+Horse <em>p2 = new Pegasus; /</em>  输出两行：<br>
+Horse 申请了空间...<br>
+Pegasus 申请了空间...<br>
+*/<br>
+cout &lt;&lt; endl;</p>
+<pre><code>p1-&gt;Fly(); //输出：Just a horse.
+p2-&gt;Fly(); //输出：I can fly!
+cout &lt;&lt; endl; 
+
+delete p1; //输出：Horse 释放了空间...
+delete p2;  /* 输出两行：
+               Pegasus 释放了空间... 
+               Horse 释放了空间... 
+        */
+return 0;
+</code></pre>
+<p>}<br>
+输入格式:<br>
+无</p>
+<p>输出格式:<br>
+根据样例格式输出。</p>
+<p>输入样例:<br>
+在这里给出一组输入。例如：</p>
+<p>无<br>
+输出样例:<br>
+在这里给出相应的输出。例如：</p>
+<p>Horse 申请了空间...<br>
+Horse 申请了空间...<br>
+Pegasus 申请了空间...</p>
+<p>Just a horse.<br>
+I can fly!</p>
+<p>Horse 释放了空间...<br>
+Pegasus 释放了空间...<br>
+Horse 释放了空间...</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+class Horse
+{
+public:
+	Horse()
+	{
+        cout &lt;&lt; &quot;Horse 申请了空间...&quot; &lt;&lt; endl;
+	}
+	virtual void Fly()
+	{
+        cout &lt;&lt; &quot;Just a horse.&quot; &lt;&lt; endl;
+	}
+	virtual ~Horse()
+	{
+        cout &lt;&lt; &quot;Horse 释放了空间...&quot; &lt;&lt; endl;
+	}
+};
+
+class Pegasus:public Horse
+{
+public:
+	Pegasus()
+	{
+        cout &lt;&lt; &quot;Pegasus 申请了空间...&quot; &lt;&lt; endl;
+	}
+	void Fly() override;
+	~Pegasus()
+	{
+        cout &lt;&lt; &quot;Pegasus 释放了空间...&quot; &lt;&lt; endl;
+	}
+};
+void Pegasus::Fly()
+{
+    cout &lt;&lt; &quot;I can fly!&quot; &lt;&lt; endl;
+}
+
+int main()
+{
+    Horse* p1 = new Horse; //输出：Horse 申请了空间...
+    Horse* p2 = new Pegasus; /*  输出两行：
+                                 Horse 申请了空间...
+                                 Pegasus 申请了空间...
+                     */
+    cout &lt;&lt; endl;
+
+    p1-&gt;Fly(); //输出：Just a horse.
+    p2-&gt;Fly(); //输出：I can fly!
+    cout &lt;&lt; endl;
+
+    delete p1; //输出：Horse 释放了空间...
+    delete p2;  /* 输出两行：
+                   Pegasus 释放了空间...
+                   Horse 释放了空间...
+            */
+    return 0;
+}
+</code></pre>
+<p>7-14 A是A1的虚基类 (10 分)<br>
+本题目要求读入3个整数A、B和C，然后按照下列要求完成相关设计：1.定义一个基类A，在其中包含保护的数据成员int i，设计类A的带参构造函数对i进行初始化，定义成员函数display（）显示i值； 2.定义基类A的公有派生类A1，且A是A1的虚基类；A1中包含保护的数据成员int j，设计类A1的构造函数； 3.定义基类A的公有派生类A2，且A是A2的虚基类；A2中包含保护的数据成员int k，设计类A2的构造函数； 4.定义类A3，A3是A1和A2以多继承方式生成的公有派生类，设计类A3的构造函数；定义成员函数disp（）在其中调用display（）函数显示i值，另外输出j和k值； 5.在main（）中定义类A3的1个对象变量，通过输入的3个整数完成对象的创建；调用类A3的成员函数disp（）输出信息。</p>
+<p>输入格式:<br>
+输入在一行中给出3个绝对值不超过1000的整数A、B和C。</p>
+<p>输出格式:<br>
+按行输出每个类中的构造函数中的信息和在主函数中调用的对象的成员函数。</p>
+<p>输入样例:<br>
+在这里给出一组输入。例如：</p>
+<p>1 2 3<br>
+输出样例:<br>
+在这里给出相应的输出。例如：</p>
+<p>Call A:i=1<br>
+Call A1:i=1<br>
+Call A2:i=1<br>
+Call A3:i=1<br>
+i=1<br>
+j=2<br>
+k=3</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+class A
+{
+public:
+	A(int i1) :i(i1) { cout &lt;&lt; &quot;Call A:i=&quot; &lt;&lt; i &lt;&lt; endl; }
+	void display()
+	{
+		cout &lt;&lt; i &lt;&lt; endl;
+	}
+protected:
+	int i;
+};
+
+class A1:virtual public A
+{
+public:
+	A1(int i1,int j) :A(i1),j(j){ cout &lt;&lt; &quot;Call A1:i=&quot; &lt;&lt; i &lt;&lt; endl; }
+protected:
+	int j;
+};
+
+class A2:virtual public A
+{
+public:
+	A2(int i1,int k1):A(i1),k(k1){ cout &lt;&lt; &quot;Call A2:i=&quot; &lt;&lt; i &lt;&lt; endl; }
+protected:
+	int k;
+};
+
+class A3:public A1,public A2
+{
+public:
+	A3(int i1,int j1,int k1):A2(i1,k1),A1(i1,j1),A(i1){ cout &lt;&lt; &quot;Call A3:i=&quot; &lt;&lt; i &lt;&lt; endl; }
+	void display()
+	{
+		cout&lt;&lt;&quot;i=&quot; &lt;&lt; i &lt;&lt; endl;
+		cout&lt;&lt;&quot;j=&quot; &lt;&lt; j &lt;&lt; endl;
+		cout&lt;&lt;&quot;k=&quot; &lt;&lt; k &lt;&lt; endl;
+
+	}
+};
+int main()
+{
+	int a, b, c;
+	cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+	A3 a3(a, b, c);
+	a3.display();
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://haifengchengguang.github.io/post/cao-zuo-xi-tong-shi-yan/">
+              <h3 class="post-title">
+                操作系统实验 
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '8c2bfbf18727f466152c',
+    clientSecret: 'c5406e5093c1fc36f0a94093cd581fe5e82784a3',
+    repo: 'haifengchengguang.github.io',
+    owner: 'haifengchengguang',
+    admin: ['haifengchengguang'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+   <div>
+    <a href="https://gridea.dev/" target="_blank">Powered by Gridea&#65281;</a>
+  </div>
+  <div>
+    <strong><i>你是人间的四月天❤</i></strong>
+  <a class="rss" href="https://haifengchengguang.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
